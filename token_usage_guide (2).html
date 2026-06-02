@@ -1,0 +1,2572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Token Intelligence Field Guide — Complete Reference for AI Token Optimization</title>
+<meta name="description" content="A complete reference for understanding, measuring, and optimizing AI token usage across every layer of AI systems.">
+<meta name="author" content="Vinit Metange">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080b0f;--bg2:#0f1318;--bg3:#161b22;--bg4:#1e242d;
+  --border:#1e2530;--border2:#2a3340;
+  --text:#e4e8f0;--text2:#8a95a8;--text3:#4a5568;
+  --amber:#f59e0b;--green:#10b981;--purple:#6366f1;--red:#ef4444;--blue:#3b82f6;--teal:#14b8a6;
+  --font-display:'Fraunces',serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --radius:10px;--radius-lg:16px;--radius-xl:24px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(245,158,11,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,0.015) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+.hero{padding:72px 48px 56px;max-width:1280px;margin:0 auto;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:100px;padding:5px 14px;font-size:11px;font-weight:600;color:var(--amber);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--amber);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-family:var(--font-display);font-size:clamp(44px,5.5vw,72px);line-height:1.02;color:var(--text);margin-bottom:20px;letter-spacing:-.02em;font-weight:700}
+h1 em{font-style:italic;color:var(--amber);font-weight:300}
+.hero-sub{font-size:17px;color:var(--text2);max-width:620px;line-height:1.65;margin-bottom:40px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-bottom:32px}
+.stat-n{font-family:var(--font-display);font-size:40px;color:var(--amber);line-height:1;font-weight:700}
+.stat-l{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-top:4px}
+.crisis-banner{background:linear-gradient(135deg,rgba(239,68,68,0.1),rgba(245,158,11,0.08));border:1px solid rgba(239,68,68,0.25);border-radius:var(--radius-lg);padding:20px 24px;margin:0 48px 0;max-width:1230px;display:flex;align-items:flex-start;gap:16px}
+.crisis-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.crisis-text{font-size:13px;color:var(--text2);line-height:1.6}
+.crisis-text strong{color:var(--text);display:block;margin-bottom:4px;font-size:14px}
+nav{position:sticky;top:0;z-index:100;background:rgba(8,11,15,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:10px 48px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;padding:6px 16px;border-radius:100px;border:1px solid transparent;background:none;color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:var(--font-body);white-space:nowrap}
+.nav-btn:hover{color:var(--text);background:var(--bg3)}
+.nav-btn.active{background:var(--amber);color:#000;border-color:var(--amber);font-weight:600}
+.main{max-width:1280px;margin:0 auto;padding:48px 48px 96px;position:relative}
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.section-title{font-family:var(--font-display);font-size:38px;color:var(--text);margin-bottom:8px;font-weight:700}
+.section-desc{color:var(--text2);font-size:15px;max-width:720px;line-height:1.65;margin-bottom:32px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:32px}
+.topic-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.topic-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,158,11,0.04),transparent);opacity:0;transition:opacity .3s}
+.topic-card:hover{border-color:rgba(245,158,11,0.3);transform:translateY(-2px)}
+.topic-card:hover::before{opacity:1}
+.card-icon{font-size:20px;margin-bottom:12px}
+.card-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.3}
+.card-desc{font-size:13px;color:var(--text2);line-height:1.55}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.tag{font-size:11px;padding:3px 9px;border-radius:100px;background:var(--bg3);color:var(--text3);border:1px solid var(--border)}
+.tag-amber{background:rgba(245,158,11,0.08);color:var(--amber);border-color:rgba(245,158,11,0.2)}
+.tag-green{background:rgba(16,185,129,0.08);color:var(--green);border-color:rgba(16,185,129,0.2)}
+.tag-red{background:rgba(239,68,68,0.08);color:var(--red);border-color:rgba(239,68,68,0.2)}
+.card-arrow{position:absolute;top:20px;right:20px;color:var(--text3);opacity:0;transition:all .2s;font-size:18px}
+.topic-card:hover .card-arrow{opacity:1;transform:translateX(3px)}
+.card-impact{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;padding:3px 10px;border-radius:100px}
+.impact-high{background:rgba(239,68,68,0.12);color:var(--red)}
+.impact-med{background:rgba(245,158,11,0.12);color:var(--amber)}
+.impact-low{background:rgba(16,185,129,0.12);color:var(--green)}
+.group-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin:40px 0 16px;display:flex;align-items:center;gap:12px}
+.group-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.detail-panel{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);padding:40px;margin-bottom:32px;display:none}
+.detail-panel.active{display:block;animation:fadeIn .3s ease}
+.detail-back{display:inline-flex;align-items:center;gap:8px;color:var(--text2);font-size:13px;cursor:pointer;margin-bottom:28px;background:none;border:none;font-family:var(--font-body);transition:color .2s}
+.detail-back:hover{color:var(--text)}
+.detail-title{font-family:var(--font-display);font-size:34px;color:var(--text);margin-bottom:8px;font-weight:700}
+.detail-subtitle{font-size:15px;color:var(--text2);margin-bottom:28px;line-height:1.6}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.detail-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+.detail-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.detail-box.amber{border-color:rgba(245,158,11,0.2);background:rgba(245,158,11,0.04)}
+.detail-box.green{border-color:rgba(16,185,129,0.2);background:rgba(16,185,129,0.04)}
+.detail-box.red{border-color:rgba(239,68,68,0.2);background:rgba(239,68,68,0.04)}
+.detail-box.purple{border-color:rgba(99,102,241,0.2);background:rgba(99,102,241,0.04)}
+.detail-box-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:12px}
+.detail-box-title.amber{color:var(--amber)}
+.detail-box-title.green{color:var(--green)}
+.detail-box-title.red{color:var(--red)}
+.detail-box-title.purple{color:var(--purple)}
+.detail-box-content{font-size:13px;color:var(--text2);line-height:1.75}
+.detail-box-content li{margin-bottom:6px;padding-left:18px;position:relative;list-style:none}
+.detail-box-content li::before{content:'→';position:absolute;left:0;color:var(--amber);font-size:11px;top:3px}
+.detail-box-content li.green::before{color:var(--green)}
+.detail-box-content li.red::before{content:'✕';color:var(--red)}
+.code-block{background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius);padding:16px 20px;font-family:var(--font-mono);font-size:12px;color:#94b8e8;line-height:1.9;overflow-x:auto;margin:8px 0}
+.code-block .cm{color:var(--text3)}
+.code-block .ky{color:#c084fc}
+.code-block .st{color:#86efac}
+.code-block .nm{color:var(--amber)}
+.calc-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);padding:40px;margin-bottom:32px}
+.calc-title{font-family:var(--font-display);font-size:28px;color:var(--text);margin-bottom:6px;font-weight:700}
+.calc-desc{color:var(--text2);font-size:14px;margin-bottom:28px;line-height:1.6}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.calc-inputs{display:flex;flex-direction:column;gap:18px}
+.calc-field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:8px}
+.calc-field input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;height:4px}
+.field-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.field-val{font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--amber)}
+.field-hint{font-size:11px;color:var(--text3)}
+.calc-results{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;display:flex;flex-direction:column;gap:14px}
+.result-item{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.result-item:last-child{border:none;padding-bottom:0}
+.result-label{font-size:13px;color:var(--text2)}
+.result-sublabel{font-size:11px;color:var(--text3);margin-top:2px}
+.result-val{font-family:var(--font-mono);font-size:17px;font-weight:500;color:var(--text)}
+.result-val.big{font-size:26px;color:var(--amber)}
+.result-val.warn{color:var(--red)}
+.result-val.good{color:var(--green)}
+.model-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.model-tab{padding:6px 14px;border-radius:100px;border:1px solid var(--border);background:none;color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;font-family:var(--font-body)}
+.model-tab.active{background:var(--amber);color:#000;border-color:var(--amber);font-weight:600}
+.compare-table{width:100%;border-collapse:collapse;margin:16px 0}
+.compare-table th{background:var(--bg3);color:var(--text2);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:12px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.compare-table td{padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);vertical-align:top}
+.compare-table tr:hover td{background:var(--bg3)}
+.compare-table td:first-child{color:var(--text);font-weight:500}
+.checklist{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.check-item{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:border-color .2s}
+.check-item:hover{border-color:var(--border2)}
+.check-box{width:18px;height:18px;border:2px solid var(--border2);border-radius:4px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.check-item.checked .check-box{background:var(--green);border-color:var(--green)}
+.check-item.checked .check-box::after{content:'✓';font-size:11px;color:#fff;font-weight:700}
+.check-label{font-size:13px;color:var(--text2);line-height:1.5;flex:1}
+.check-item.checked .check-label{color:var(--text3);text-decoration:line-through}
+.check-priority{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:100px;flex-shrink:0;margin-top:2px}
+.priority-p1{background:rgba(239,68,68,0.12);color:var(--red)}
+.priority-p2{background:rgba(245,158,11,0.12);color:var(--amber)}
+.priority-p3{background:rgba(16,185,129,0.12);color:var(--green)}
+.checklist-progress{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:14px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius)}
+.progress-bar-wrap{flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.progress-bar-fill{height:100%;background:var(--green);border-radius:3px;transition:width .4s ease}
+.progress-label{font-size:12px;color:var(--text3);font-family:var(--font-mono);white-space:nowrap}
+.search-wrap{position:relative;margin-bottom:32px}
+.search-input{width:100%;padding:14px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);color:var(--text);font-size:15px;font-family:var(--font-body);outline:none;transition:border-color .2s}
+.search-input:focus{border-color:rgba(245,158,11,0.5)}
+.search-input::placeholder{color:var(--text3)}
+.share-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:32px}
+.share-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:100px;border:1px solid var(--border2);background:var(--bg2);color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none;font-family:var(--font-body)}
+.share-btn:hover{border-color:var(--amber);color:var(--amber);background:rgba(245,158,11,0.06)}
+.share-btn.primary{background:var(--amber);border-color:var(--amber);color:#000;font-weight:600}
+.share-btn.primary:hover{background:#e08e0b;color:#000}
+.share-btn svg{width:15px;height:15px;flex-shrink:0}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 20px;font-size:13px;color:var(--text);z-index:1000;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+.scroll-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;opacity:0;transform:translateY(8px);transition:all .3s;z-index:90}
+.scroll-top.visible{opacity:1;transform:translateY(0)}
+.scroll-top:hover{background:var(--amber);border-color:var(--amber);color:#000}
+.author-bar{display:flex;align-items:center;gap:12px;margin-top:28px;padding:14px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);width:fit-content}
+.author-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#ef4444);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:16px;color:#000;flex-shrink:0;font-weight:700}
+.author-name{font-size:14px;font-weight:600;color:var(--text);line-height:1.2}
+.author-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.author-links{display:flex;gap:8px;margin-left:4px}
+.author-link{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:100px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:11px;font-weight:500;text-decoration:none;transition:all .2s;white-space:nowrap}
+.author-link:hover{border-color:var(--amber);color:var(--amber)}
+.author-link svg{width:12px;height:12px;flex-shrink:0}
+.token-anatomy{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin:16px 0}
+.anatomy-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.anatomy-row:last-child{margin-bottom:0}
+.anatomy-bar{height:32px;border-radius:6px;display:flex;align-items:center;padding:0 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.anatomy-bar.system{background:rgba(99,102,241,0.3);color:#a5b4fc;border:1px solid rgba(99,102,241,0.3)}
+.anatomy-bar.history{background:rgba(245,158,11,0.2);color:var(--amber);border:1px solid rgba(245,158,11,0.25)}
+.anatomy-bar.rag{background:rgba(16,185,129,0.2);color:var(--green);border:1px solid rgba(16,185,129,0.25)}
+.anatomy-bar.user{background:rgba(59,130,246,0.2);color:#93c5fd;border:1px solid rgba(59,130,246,0.25)}
+.anatomy-bar.tools{background:rgba(239,68,68,0.2);color:#fca5a5;border:1px solid rgba(239,68,68,0.25)}
+.anatomy-bar.output{background:rgba(20,184,166,0.2);color:#5eead4;border:1px solid rgba(20,184,166,0.25)}
+.anatomy-label{font-size:12px;color:var(--text2);width:140px;flex-shrink:0;font-weight:500}
+.anatomy-pct{font-size:11px;color:var(--text3);font-family:var(--font-mono);white-space:nowrap}
+.info-note{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius);padding:14px 18px;font-size:13px;color:var(--text2);line-height:1.6;margin:12px 0}
+.info-note strong{color:var(--amber)}
+.warn-note{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:var(--radius);padding:14px 18px;font-size:13px;color:var(--text2);line-height:1.6;margin:12px 0}
+.warn-note strong{color:var(--red)}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px}
+.about-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px}
+.about-card-icon{font-size:24px;margin-bottom:12px}
+.about-card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px}
+.about-card-desc{font-size:13px;color:var(--text2);line-height:1.6}
+.site-footer{border-top:1px solid var(--border);padding:40px 48px;max-width:1280px;margin:0 auto}
+.footer-brand{font-family:var(--font-display);font-size:20px;color:var(--text);margin-bottom:6px;font-weight:700}
+.footer-desc{font-size:13px;color:var(--text3);max-width:320px;line-height:1.6}
+.footer-copy{font-size:12px;color:var(--text3);margin-top:32px;padding-top:20px;border-top:1px solid var(--border);text-align:center}
+.skip-link{position:absolute;top:-100px;left:16px;background:var(--amber);color:#000;padding:8px 16px;border-radius:var(--radius);font-size:13px;font-weight:600;text-decoration:none;z-index:9999;transition:top .2s}
+.skip-link:focus{top:16px}
+code{font-family:var(--font-mono);font-size:12px;background:var(--bg3);padding:2px 5px;border-radius:4px;color:var(--amber)}
+@media(max-width:768px){
+  .hero{padding:40px 20px}
+  .main{padding:28px 20px 64px}
+  .nav-inner{padding:8px 16px}
+  .detail-grid,.detail-grid-3,.calc-grid{grid-template-columns:1fr}
+  h1{font-size:38px}
+  .crisis-banner{margin:0 20px}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<button class="scroll-top" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
+<div class="toast" id="toast"></div>
+
+<div class="hero">
+  <div class="hero-badge">⚡ Token Intelligence</div>
+  <h1>The Token<br><em>Intelligence</em><br>Field Guide</h1>
+  <p class="hero-sub">Your complete reference for understanding, measuring, and optimising AI token usage. From fundamentals to advanced agentic architectures — master every layer that drives your AI bill.</p>
+  <div class="hero-stats">
+    <div><div class="stat-n">32</div><div class="stat-l">Topics Covered</div></div>
+    <div><div class="stat-n">8</div><div class="stat-l">Domain Areas</div></div>
+    <div><div class="stat-n">5</div><div class="stat-l">Calculators</div></div>
+    <div><div class="stat-n">90%+</div><div class="stat-l">Potential Savings</div></div>
+  </div>
+  <div class="author-bar">
+    <div class="author-avatar">V</div>
+    <div><div class="author-name">Vinit Metange</div><div class="author-sub">AI Systems Architect · Token Optimisation Specialist</div></div>
+    <div class="author-links">
+      <a class="author-link" href="https://linkedin.com/in/vinitmetange" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="author-link" href="https://github.com/vinitmetange" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</div>
+<div class="crisis-banner">
+  <div class="crisis-icon">🔥</div>
+  <div class="crisis-text">
+    <strong>The AI Cost Crisis Is Real — And Tokens Are the Root Cause</strong>
+    Recent industry data shows organisations spending 3–10× their projected AI budgets within 12 months of deployment. Agentic systems compound this: a single agent loop can consume 50,000+ tokens per task. This guide exists to change that trajectory — understand every token, optimise every layer.
+  </div>
+</div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showSection('all')">All Topics</button>
+    <button class="nav-btn" onclick="showSection('fundamentals')">Token Fundamentals</button>
+    <button class="nav-btn" onclick="showSection('anatomy')">Context Anatomy</button>
+    <button class="nav-btn" onclick="showSection('prompt')">Prompt Optimisation</button>
+    <button class="nav-btn" onclick="showSection('caching')">Caching &amp; Reuse</button>
+    <button class="nav-btn" onclick="showSection('rag')">RAG &amp; Retrieval</button>
+    <button class="nav-btn" onclick="showSection('agentic')">Agentic Systems</button>
+    <button class="nav-btn" onclick="showSection('routing')">Model Routing</button>
+    <button class="nav-btn" onclick="showSection('calculators')">Calculators</button>
+    <button class="nav-btn" onclick="showSection('checklists')">Checklists</button>
+    <button class="nav-btn" onclick="showSection('metrics')">Metrics</button>
+    <button class="nav-btn" onclick="showSection('about')">About</button>
+  </div>
+</nav>
+<main id="main-content" class="main">
+
+<!-- ALL TOPICS -->
+<section class="section active" id="sec-all">
+  <div class="section-title">Token Intelligence Field Guide</div>
+  <div class="section-desc">Everything you need to understand, measure, and radically reduce AI token consumption. Search across all 32 topics or navigate by domain area above.</div>
+  <div class="search-wrap">
+    <input class="search-input" type="text" id="search-all" placeholder="Search topics, strategies, concepts… (press / to focus)" oninput="filterCards(this.value)" autocomplete="off" />
+  </div>
+
+  <div class="group-label">🔬 Token Fundamentals</div>
+  <div class="card-grid" id="grid-all">
+    <div class="topic-card" onclick="openDetail('what-is-token')" data-tags="fundamentals tokenization bpe">
+      <div class="card-icon">🔤</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">What Is a Token?</div>
+      <div class="card-desc">How text is split into tokens, why token counts differ from word counts, and why this matters for every AI cost.</div>
+      <div class="card-tags"><span class="tag tag-amber">Foundation</span><span class="tag">BPE</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('token-pricing')" data-tags="pricing cost models rates">
+      <div class="card-icon">💰</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Token Pricing Across Models</div>
+      <div class="card-desc">Input vs output cost asymmetry, cache pricing, and real cost comparisons across frontier models.</div>
+      <div class="card-tags"><span class="tag tag-red">High Cost</span><span class="tag">FinOps</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('token-counting')" data-tags="counting measurement tiktoken">
+      <div class="card-icon">🔢</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Token Counting &amp; Measurement</div>
+      <div class="card-desc">Count tokens before you send them. Tools, libraries, and pre-flight checks that prevent bill surprises.</div>
+      <div class="card-tags"><span class="tag tag-amber">Tooling</span><span class="tag">tiktoken</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('token-budget')" data-tags="budget limits control enforcement">
+      <div class="card-icon">📊</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Token Budgets &amp; Limits</div>
+      <div class="card-desc">Set hard and soft token budgets per request, per user, and per feature. Enforce graceful degradation before you hit limits.</div>
+      <div class="card-tags"><span class="tag tag-red">Governance</span><span class="tag">Control</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+
+  <div class="group-label">🧬 Context Window Anatomy</div>
+    <div class="topic-card" onclick="openDetail('context-anatomy')" data-tags="context window anatomy layers breakdown">
+      <div class="card-icon">🔍</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Full Context Anatomy</div>
+      <div class="card-desc">Dissect the 6 layers that fill your context window. Understand what's eating 95% of your tokens before the user even speaks.</div>
+      <div class="card-tags"><span class="tag tag-amber">Core</span><span class="tag">Architecture</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('system-prompt')" data-tags="system prompt overhead bloat instructions">
+      <div class="card-icon">⚙️</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">System Prompt Tokens</div>
+      <div class="card-desc">The silent cost multiplier. System prompts repeat on every single request — even 500 extra tokens costs thousands daily at scale.</div>
+      <div class="card-tags"><span class="tag tag-red">High Impact</span><span class="tag">Silent Cost</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('conversation-history')" data-tags="history conversation context management truncation">
+      <div class="card-icon">💬</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Conversation History Management</div>
+      <div class="card-desc">Every message keeps all prior turns by default. Naive history management is the #1 hidden cost driver in chat applications.</div>
+      <div class="card-tags"><span class="tag tag-red">High Impact</span><span class="tag">Chat Apps</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('tool-schemas')" data-tags="tool schema function calling json definitions overhead">
+      <div class="card-icon">🔧</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Tool Schema Tokens</div>
+      <div class="card-desc">Every tool definition you include costs tokens — even when the tool is never called. Lazy-load and compress schemas to cut overhead.</div>
+      <div class="card-tags"><span class="tag tag-amber">Agentic</span><span class="tag">Tool Use</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+
+  <div class="group-label">✍️ Prompt Optimisation</div>
+    <div class="topic-card" onclick="openDetail('prompt-compression')" data-tags="compression prompt engineering concise shorter">
+      <div class="card-icon">🗜️</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Prompt Compression</div>
+      <div class="card-desc">Techniques to slash prompt length without losing meaning: instruction distillation, LLMLingua, and format optimisation.</div>
+      <div class="card-tags"><span class="tag tag-green">40–60% savings</span><span class="tag">Technique</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('output-control')" data-tags="output max_tokens response length control">
+      <div class="card-icon">📤</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Output Token Control</div>
+      <div class="card-desc">Output tokens cost 3–5× more than input. Always set max_tokens, specify output format, and constrain verbosity explicitly.</div>
+      <div class="card-tags"><span class="tag tag-red">High Cost</span><span class="tag tag-amber">Quick Win</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('few-shot')" data-tags="few shot examples efficiency prompting">
+      <div class="card-icon">📋</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Few-Shot Efficiency</div>
+      <div class="card-desc">More examples ≠ better results. Find the minimum effective shot count — most tasks need ≤3 examples when framed correctly.</div>
+      <div class="card-tags"><span class="tag">Prompting</span><span class="tag tag-green">20–40% savings</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('structured-output')" data-tags="json structured format schema constrained output">
+      <div class="card-icon">🏗️</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Structured Output</div>
+      <div class="card-desc">JSON mode and constrained generation prevent verbose free-text responses and eliminate post-processing extraction tokens.</div>
+      <div class="card-tags"><span class="tag tag-green">30–50% savings</span><span class="tag">JSON</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+
+  <div class="group-label">♻️ Caching &amp; Reuse</div>
+    <div class="topic-card" onclick="openDetail('prompt-caching')" data-tags="kv cache prompt caching anthropic 90% savings">
+      <div class="card-icon">⚡</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Prompt Caching (KV Cache)</div>
+      <div class="card-desc">Cache static context at the model layer — system prompts, documents, examples. Up to 90% reduction on cached tokens. Biggest single win available.</div>
+      <div class="card-tags"><span class="tag tag-green">Up to 90% savings</span><span class="tag tag-amber">Priority #1</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('semantic-cache')" data-tags="semantic cache similar questions response reuse">
+      <div class="card-icon">🧠</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Semantic Response Caching</div>
+      <div class="card-desc">Cache full responses for semantically similar queries. A vector-similarity lookup can serve 30–60% of requests with zero LLM calls.</div>
+      <div class="card-tags"><span class="tag tag-green">30–60% hit rate</span><span class="tag">Vector</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('tool-memoization')" data-tags="tool result cache memoization api calls repeat">
+      <div class="card-icon">💾</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Tool Result Memoization</div>
+      <div class="card-desc">Cache tool call results within and across agent runs. Expensive API lookups shouldn't re-execute on every loop iteration.</div>
+      <div class="card-tags"><span class="tag tag-amber">Agentic</span><span class="tag">API Savings</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('embedding-cache')" data-tags="embedding cache vector reuse rag">
+      <div class="card-icon">🔮</div>
+      <div class="card-impact impact-low">● Useful</div>
+      <div class="card-title">Embedding Caching</div>
+      <div class="card-desc">Don't re-embed the same chunks. Persist vectors for static documents; only re-embed on actual content changes.</div>
+      <div class="card-tags"><span class="tag">Embeddings</span><span class="tag">RAG</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+
+  <div class="group-label">📚 RAG &amp; Retrieval</div>
+    <div class="topic-card" onclick="openDetail('chunk-sizing')" data-tags="chunking rag retrieval size overlap">
+      <div class="card-icon">✂️</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Chunk Sizing Strategy</div>
+      <div class="card-desc">Oversized chunks bloat context. Undersized chunks lose coherence. Find the sweet spot for your domain with hybrid chunking.</div>
+      <div class="card-tags"><span class="tag tag-amber">RAG</span><span class="tag">Chunking</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('reranking')" data-tags="reranking rag context quality precision top-k">
+      <div class="card-icon">🎯</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Re-ranking &amp; Precision Retrieval</div>
+      <div class="card-desc">Retrieve more, send less. A re-ranker filters top-50 candidates to 3–5 truly relevant chunks, slashing RAG context by 80%.</div>
+      <div class="card-tags"><span class="tag tag-green">60–80% context savings</span><span class="tag">Quality</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('rag-budget')" data-tags="rag context budget allocation control limit">
+      <div class="card-icon">📏</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">RAG Context Budget Control</div>
+      <div class="card-desc">Allocate a strict token budget to retrieved context. Enforce it with chunk truncation and relevance-based trimming.</div>
+      <div class="card-tags"><span class="tag tag-amber">Budget</span><span class="tag">RAG</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('raptor')" data-tags="raptor summary indexing hierarchical rag abstraction">
+      <div class="card-icon">🦅</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Summary Indexing &amp; RAPTOR</div>
+      <div class="card-desc">Build multi-level summaries of your corpus. Retrieve compact summaries for high-level queries instead of raw dense chunks.</div>
+      <div class="card-tags"><span class="tag">RAPTOR</span><span class="tag tag-green">Advanced</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+
+  <div class="group-label">🤖 Agentic Systems</div>
+    <div class="topic-card" onclick="openDetail('agent-loop')" data-tags="agent loop explosion compound cost iterations">
+      <div class="card-icon">🌀</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Agent Loop Token Explosion</div>
+      <div class="card-desc">Each iteration carries the full prior context. 10 iterations can cost 10–50× a single call. The most dangerous cost pattern in AI.</div>
+      <div class="card-tags"><span class="tag tag-red">Danger Zone</span><span class="tag">Agentic</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('multi-agent')" data-tags="multi agent overhead orchestration subagent context">
+      <div class="card-icon">🕸️</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Multi-Agent Overhead</div>
+      <div class="card-desc">Every agent-to-agent message serialises full context. Orchestrator patterns, shared memory, and message compression are essential.</div>
+      <div class="card-tags"><span class="tag tag-red">High Cost</span><span class="tag">Architecture</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('planning-reasoning')" data-tags="reasoning planning thinking chain of thought cot">
+      <div class="card-icon">🧩</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Planning &amp; Reasoning Costs</div>
+      <div class="card-desc">Extended thinking and chain-of-thought reasoning generate thousands of tokens before the real response. Budget reasoning separately.</div>
+      <div class="card-tags"><span class="tag tag-red">High Cost</span><span class="tag">Reasoning</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('tool-result-mgmt')" data-tags="tool call result management truncation extraction">
+      <div class="card-icon">📦</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Tool Call Result Management</div>
+      <div class="card-desc">Raw API results dumped into context are token-wasteful. Extract only needed fields. A 50KB API response rarely needs more than 500 tokens.</div>
+      <div class="card-tags"><span class="tag tag-amber">Agentic</span><span class="tag">Tool Use</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+
+  <div class="group-label">🔀 Model Routing &amp; FinOps</div>
+    <div class="topic-card" onclick="openDetail('model-routing')" data-tags="routing model selection intelligent haiku claude task">
+      <div class="card-icon">🔀</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Intelligent Model Routing</div>
+      <div class="card-desc">Route simple tasks to small, cheap models. Reserve frontier models for tasks that genuinely need them. 80% cost reduction possible.</div>
+      <div class="card-tags"><span class="tag tag-green">Up to 80% savings</span><span class="tag">Routing</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('speculative')" data-tags="speculative decoding draft model speed latency">
+      <div class="card-icon">🚀</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Speculative Decoding</div>
+      <div class="card-desc">A small draft model generates candidates; the large model verifies in parallel. Reduces output latency without sacrificing quality.</div>
+      <div class="card-tags"><span class="tag">Latency</span><span class="tag tag-green">Speed</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('fine-tuning')" data-tags="fine tuning prompt reduction smaller model distillation">
+      <div class="card-icon">🎛️</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Fine-Tuning for Prompt Reduction</div>
+      <div class="card-desc">Bake repetitive instructions into a fine-tuned model. Eliminate 80% of system prompt tokens for high-volume, predictable tasks.</div>
+      <div class="card-tags"><span class="tag tag-amber">Advanced</span><span class="tag">Fine-Tuning</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('batch-processing')" data-tags="batch async processing cost reduction throughput">
+      <div class="card-icon">📦</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Batch Processing</div>
+      <div class="card-desc">Async batch APIs offer 50% cost reduction for non-real-time tasks. Classification, summarisation, and enrichment jobs don't need streaming.</div>
+      <div class="card-tags"><span class="tag tag-green">50% savings</span><span class="tag">Async</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('observability')" data-tags="observability tracing logging monitoring telemetry">
+      <div class="card-icon">📡</div>
+      <div class="card-impact impact-high">● Critical</div>
+      <div class="card-title">Token Observability &amp; Tracing</div>
+      <div class="card-desc">You can't optimise what you don't measure. Structured token telemetry per request, per feature, per user — the foundation of all FinOps.</div>
+      <div class="card-tags"><span class="tag tag-amber">Governance</span><span class="tag">Monitoring</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('rate-limiting')" data-tags="rate limiting quota per user control governance">
+      <div class="card-icon">🚦</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Rate Limiting &amp; Quotas</div>
+      <div class="card-desc">Per-user, per-feature, and per-team token quotas prevent runaway costs. Hard limits with graceful fallbacks protect budget.</div>
+      <div class="card-tags"><span class="tag tag-amber">Governance</span><span class="tag">Quotas</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('cost-attribution')" data-tags="cost attribution chargeback department feature tagging">
+      <div class="card-icon">💳</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Cost Attribution &amp; Chargeback</div>
+      <div class="card-desc">Tag every token to a feature, team, or customer. Showback and chargeback models drive accountability and surface the real cost of each product decision.</div>
+      <div class="card-tags"><span class="tag">FinOps</span><span class="tag tag-amber">Attribution</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="topic-card" onclick="openDetail('anomaly-detection')" data-tags="anomaly detection alerts spike cost unusual traffic">
+      <div class="card-icon">🚨</div>
+      <div class="card-impact impact-med">● Important</div>
+      <div class="card-title">Token Anomaly Detection</div>
+      <div class="card-desc">Detect cost spikes before your bill does. Automated anomaly detection on token velocity, request size, and per-user consumption patterns.</div>
+      <div class="card-tags"><span class="tag tag-red">Alerting</span><span class="tag">Protection</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+  </div><!-- end card-grid -->
+
+  <div class="share-bar">
+    <span style="font-size:13px;color:var(--text3)">Share this guide:</span>
+    <button class="share-btn primary" onclick="shareLinkedIn()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      Share on LinkedIn
+    </button>
+    <button class="share-btn" onclick="shareTwitter()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.4 5.4 3.9 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+      Share on X
+    </button>
+    <button class="share-btn" onclick="copyLink()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      Copy Link
+    </button>
+  </div>
+</section>
+
+<!-- DETAIL PANELS (hidden until card click) -->
+
+<!-- WHAT IS A TOKEN -->
+<div class="detail-panel" id="detail-what-is-token">
+  <button class="detail-back" onclick="closeDetail('what-is-token','all')">← Back to All Topics</button>
+  <div class="detail-title">What Is a Token?</div>
+  <div class="detail-subtitle">The atomic unit of all LLM computation and cost. Every character, word, and space resolves into tokens — and every token has a price.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Core Concept</div>
+      <div class="detail-box-content">
+        LLMs don't process text directly — they process <strong>tokens</strong>: subword units generated by Byte-Pair Encoding (BPE). A token is roughly 3–4 characters or 0.75 words in English.<br><br>
+        <ul>
+          <li>"Hello world" → 2 tokens</li>
+          <li>"Unbelievable" → 3 tokens (Un / believ / able)</li>
+          <li>Code symbols, whitespace, numbers each tokenise differently</li>
+          <li>Non-English languages use more tokens per word (2–4×)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box">
+      <div class="detail-box-title">Why It Matters</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>Every API call is billed per input + output token</li>
+          <li>Context windows have hard token limits (32K–200K+)</li>
+          <li>Token count ≠ word count — estimating by words leads to budget errors</li>
+          <li>Whitespace, punctuation, and formatting all count</li>
+          <li>Tokens drive both cost and latency</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="detail-grid-3">
+    <div class="detail-box green">
+      <div class="detail-box-title green">Efficient Patterns</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Dense prose over bullet lists</li>
+          <li class="green">Short variable names in code prompts</li>
+          <li class="green">Remove redundant whitespace</li>
+          <li class="green">Abbreviate known terms</li>
+          <li class="green">Use JSON without extra spacing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box red">
+      <div class="detail-box-title red">Wasteful Patterns</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="red">Excessive markdown formatting</li>
+          <li class="red">Verbose role descriptions</li>
+          <li class="red">Repeated context injections</li>
+          <li class="red">Raw XML/HTML in prompts</li>
+          <li class="red">Unnecessary examples</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box">
+      <div class="detail-box-title">Token Ratios by Language</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>English: ~4 chars / token</li>
+          <li>Spanish/French: ~3.5 chars / token</li>
+          <li>Chinese/Japanese: ~1.5 chars / token</li>
+          <li>Code (Python): ~3 chars / token</li>
+          <li>JSON: ~3.5 chars / token</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="code-block"><span class="cm"># Count tokens before sending (Python + tiktoken)</span>
+<span class="ky">import</span> tiktoken
+
+enc = tiktoken.encoding_for_model(<span class="st">"gpt-4o"</span>)
+tokens = enc.encode(<span class="st">"Your text here"</span>)
+<span class="ky">print</span>(f<span class="st">"Token count: {len(tokens)}"</span>)
+
+<span class="cm"># Anthropic SDK</span>
+client.beta.messages.count_tokens(
+  model=<span class="st">"claude-sonnet-4-20250514"</span>,
+  messages=[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Your text"</span>}]
+)</div>
+</div>
+
+<!-- TOKEN PRICING -->
+<div class="detail-panel" id="detail-token-pricing">
+  <button class="detail-back" onclick="closeDetail('token-pricing','all')">← Back</button>
+  <div class="detail-title">Token Pricing Across Models</div>
+  <div class="detail-subtitle">Output tokens cost 3–5× more than input tokens. Understanding cost asymmetry is the foundation of any token optimisation strategy.</div>
+  <div class="info-note"><strong>Key Insight:</strong> Most organisations are shocked to find 60–80% of their AI bill comes from output tokens, which they have the most control over. Always set max_tokens and specify response format.</div>
+  <table class="compare-table">
+    <thead><tr><th>Model</th><th>Input ($/1M)</th><th>Output ($/1M)</th><th>Cache Read</th><th>Best For</th></tr></thead>
+    <tbody>
+      <tr><td>Claude Haiku 3.5</td><td>$0.80</td><td>$4.00</td><td>$0.08</td><td>High-volume simple tasks</td></tr>
+      <tr><td>Claude Sonnet 4</td><td>$3.00</td><td>$15.00</td><td>$0.30</td><td>Balanced production workloads</td></tr>
+      <tr><td>Claude Opus 4</td><td>$15.00</td><td>$75.00</td><td>$1.50</td><td>Complex reasoning, high-stakes</td></tr>
+      <tr><td>GPT-4o mini</td><td>$0.15</td><td>$0.60</td><td>$0.075</td><td>Cost-sensitive applications</td></tr>
+      <tr><td>GPT-4o</td><td>$2.50</td><td>$10.00</td><td>$1.25</td><td>Multimodal, broad tasks</td></tr>
+      <tr><td>Gemini 1.5 Flash</td><td>$0.075</td><td>$0.30</td><td>—</td><td>Ultra-high-volume, simple</td></tr>
+    </tbody>
+  </table>
+  <div class="detail-grid">
+    <div class="detail-box red">
+      <div class="detail-box-title red">The Output Cost Trap</div>
+      <div class="detail-box-content">Output tokens are the largest cost lever most teams ignore. A model asked to "explain in detail" vs "summarise in 3 bullets" can produce 10× more tokens. Always instruct the model on output length and format explicitly.</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Cache Pricing Advantage</div>
+      <div class="detail-box-content">Cached input tokens cost ~90% less on Anthropic models. A 2,000-token system prompt called 1,000 times/day costs $60/day uncached vs $6/day cached — $18,000/year difference at Claude Sonnet rates.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TOKEN COUNTING -->
+<div class="detail-panel" id="detail-token-counting">
+  <button class="detail-back" onclick="closeDetail('token-counting','all')">← Back</button>
+  <div class="detail-title">Token Counting &amp; Measurement</div>
+  <div class="detail-subtitle">Count tokens before you send them. Pre-flight counting prevents context overflows, enables graceful degradation, and gives you full cost visibility.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Counting Tools</div>
+      <div class="detail-box-content">
+        <ul>
+          <li><strong>tiktoken</strong> — OpenAI's fast BPE tokeniser (Python)</li>
+          <li><strong>Anthropic count_tokens API</strong> — exact counts pre-send</li>
+          <li><strong>tokenize.js</strong> — browser-side counting</li>
+          <li><strong>LangChain token splitters</strong> — chunking-aware counting</li>
+          <li><strong>LlamaIndex token counters</strong> — pipeline-integrated</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box">
+      <div class="detail-box-title">What to Log Per Request</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>System prompt tokens (static overhead)</li>
+          <li>History tokens (dynamic, grows over time)</li>
+          <li>RAG context tokens</li>
+          <li>Tool schema tokens</li>
+          <li>User message tokens</li>
+          <li>Output tokens (actual + budgeted)</li>
+          <li>Cache hits vs cache misses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="code-block"><span class="cm"># Pre-flight token guard — abort before sending if over budget</span>
+<span class="ky">def</span> <span class="nm">count_request_tokens</span>(system, messages, tools=[]):
+    total = count(system) + count(tools)
+    <span class="ky">for</span> m <span class="ky">in</span> messages:
+        total += count(m[<span class="st">"content"</span>]) + <span class="nm">4</span>  <span class="cm"># 4 overhead per message</span>
+    <span class="ky">return</span> total
+
+<span class="ky">def</span> <span class="nm">safe_call</span>(system, messages, max_budget=<span class="nm">8000</span>):
+    tokens = count_request_tokens(system, messages)
+    <span class="ky">if</span> tokens > max_budget:
+        messages = truncate_history(messages, max_budget - count(system))
+    <span class="ky">return</span> client.messages.create(...)</div>
+</div>
+
+<!-- TOKEN BUDGET -->
+<div class="detail-panel" id="detail-token-budget">
+  <button class="detail-back" onclick="closeDetail('token-budget','all')">← Back</button>
+  <div class="detail-title">Token Budgets &amp; Limits</div>
+  <div class="detail-subtitle">Budgets are the governance layer of token optimisation. Define them at every level — request, user, feature, team — and enforce them with graceful degradation.</div>
+  <div class="detail-grid-3">
+    <div class="detail-box green">
+      <div class="detail-box-title green">Soft Budget (Warning)</div>
+      <div class="detail-box-content">70–85% of limit. Log a warning, notify the user that context is filling, begin proactive history summarisation. Don't break the experience.</div>
+    </div>
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Hard Budget (Enforce)</div>
+      <div class="detail-box-content">90% of limit. Truncate oldest history, compress RAG context, remove optional tool schemas. Maintain core functionality at minimum token footprint.</div>
+    </div>
+    <div class="detail-box red">
+      <div class="detail-box-title red">Emergency Limit (Block)</div>
+      <div class="detail-box-content">100% of limit. Return a structured error or fallback response. Never send a request that will fail or cost unexpectedly at the API layer.</div>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-box">
+      <div class="detail-box-title">Budget Dimensions</div>
+      <div class="detail-box-content">
+        <ul>
+          <li><strong>Per-request</strong> — max context + max output tokens</li>
+          <li><strong>Per-session</strong> — cumulative tokens in a conversation</li>
+          <li><strong>Per-user/day</strong> — rate limiting individuals</li>
+          <li><strong>Per-feature</strong> — chat vs code gen vs summarisation</li>
+          <li><strong>Per-team/month</strong> — departmental chargeback</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Graceful Degradation Ladder</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>Step 1: Summarise oldest history turns</li>
+          <li>Step 2: Remove optional tool schemas</li>
+          <li>Step 3: Reduce RAG top-k from 10 → 3</li>
+          <li>Step 4: Strip examples from system prompt</li>
+          <li>Step 5: Route to smaller model</li>
+          <li>Step 6: Return cached/fallback response</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXT ANATOMY -->
+<div class="detail-panel" id="detail-context-anatomy">
+  <button class="detail-back" onclick="closeDetail('context-anatomy','all')">← Back</button>
+  <div class="detail-title">Full Context Window Anatomy</div>
+  <div class="detail-subtitle">Before the user types a single word, 80–95% of the context window may already be consumed. Understanding each layer is the first step to controlling costs.</div>
+  <div class="warn-note"><strong>The 95% Problem:</strong> In production agentic systems with RAG, multi-turn history, and tool schemas, the actual user message is often &lt;5% of total tokens sent. Optimise the 95%, not the 5%.</div>
+  <div class="token-anatomy">
+    <div class="anatomy-row">
+      <div class="anatomy-label">System Prompt</div>
+      <div style="flex:1">
+        <div class="anatomy-bar system" style="width:25%">~2,000 tokens</div>
+      </div>
+      <div class="anatomy-pct">25%</div>
+    </div>
+    <div class="anatomy-row">
+      <div class="anatomy-label">Conv. History</div>
+      <div style="flex:1">
+        <div class="anatomy-bar history" style="width:20%">~1,600 tokens</div>
+      </div>
+      <div class="anatomy-pct">20%</div>
+    </div>
+    <div class="anatomy-row">
+      <div class="anatomy-label">RAG Context</div>
+      <div style="flex:1">
+        <div class="anatomy-bar rag" style="width:35%">~2,800 tokens</div>
+      </div>
+      <div class="anatomy-pct">35%</div>
+    </div>
+    <div class="anatomy-row">
+      <div class="anatomy-label">Tool Schemas</div>
+      <div style="flex:1">
+        <div class="anatomy-bar tools" style="width:8%">~640 tok</div>
+      </div>
+      <div class="anatomy-pct">8%</div>
+    </div>
+    <div class="anatomy-row">
+      <div class="anatomy-label">User Message</div>
+      <div style="flex:1">
+        <div class="anatomy-bar user" style="width:6%">~480 tok</div>
+      </div>
+      <div class="anatomy-pct">6%</div>
+    </div>
+    <div class="anatomy-row">
+      <div class="anatomy-label">Output</div>
+      <div style="flex:1">
+        <div class="anatomy-bar output" style="width:7%">~560 tok</div>
+      </div>
+      <div class="anatomy-pct">7%</div>
+    </div>
+  </div>
+  <div class="detail-grid-3">
+    <div class="detail-box purple">
+      <div class="detail-box-title purple">Layer 1: System Prompt</div>
+      <div class="detail-box-content">Static instructions sent on every request. Optimise once, save forever. Target: &lt;500 tokens. Enable KV caching to reduce cost by 90%.</div>
+    </div>
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Layer 2: History</div>
+      <div class="detail-box-content">Grows with every turn. Implement sliding window, periodic summarisation, or selective retention to cap at a token budget.</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Layer 3: RAG Context</div>
+      <div class="detail-box-content">The largest variable layer. Re-ranking, smaller chunks, and budget caps are the primary levers. Target: ≤1,500 tokens of retrieved context.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SYSTEM PROMPT -->
+<div class="detail-panel" id="detail-system-prompt">
+  <button class="detail-back" onclick="closeDetail('system-prompt','all')">← Back</button>
+  <div class="detail-title">System Prompt Tokens</div>
+  <div class="detail-subtitle">System prompts are a silent cost multiplier. Every token in your system prompt is paid on every single request — at scale, even 200 extra words can cost thousands of dollars monthly.</div>
+  <div class="detail-grid">
+    <div class="detail-box red">
+      <div class="detail-box-title red">Cost at Scale Example</div>
+      <div class="detail-box-content">
+        A 2,000-token system prompt at 100,000 requests/day:<br><br>
+        <strong>Uncached:</strong> 200M tokens × $3/1M = $600/day = $18,000/month<br>
+        <strong>Cached (90% hit):</strong> 20M × $3 + 180M × $0.30 = $114/day = $3,420/month<br><br>
+        <strong>Savings from caching alone: $14,580/month</strong>
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Compression Checklist</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Remove "you are a helpful assistant" boilerplate</li>
+          <li class="green">Replace prose rules with bullet directives</li>
+          <li class="green">Eliminate redundant instructions</li>
+          <li class="green">Use abbreviations for repeated terms</li>
+          <li class="green">Move examples to a cacheable prefix block</li>
+          <li class="green">Audit quarterly — rules accumulate over time</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-note"><strong>Cache Everything Static:</strong> Place all static content (persona, rules, examples, documents) at the beginning of the context as a cacheable block. Only dynamic, per-request content should be outside the cache boundary.</div>
+</div>
+
+<!-- CONVERSATION HISTORY -->
+<div class="detail-panel" id="detail-conversation-history">
+  <button class="detail-back" onclick="closeDetail('conversation-history','all')">← Back</button>
+  <div class="detail-title">Conversation History Management</div>
+  <div class="detail-subtitle">By default, every new message carries the entire conversation. A 20-turn chat can accumulate 40,000+ tokens — paid again on message 21. This is the #1 hidden cost driver in chat apps.</div>
+  <div class="detail-grid-3">
+    <div class="detail-box">
+      <div class="detail-box-title">Strategy 1: Sliding Window</div>
+      <div class="detail-box-content">Keep only the last N turns. Simple, predictable, but loses long-term context. Best for task-focused chatbots where recency matters most.</div>
+    </div>
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Strategy 2: Summarisation</div>
+      <div class="detail-box-content">Periodically compress older turns into a summary paragraph. Preserves key context at ~10% of original token cost. Best for long support conversations.</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Strategy 3: Selective Retention</div>
+      <div class="detail-box-content">Keep only turns flagged as high-value (user corrections, key decisions, tool results). Score turns by relevance and prune dynamically.</div>
+    </div>
+  </div>
+  <div class="code-block"><span class="cm"># Summarise history when it exceeds a token budget</span>
+<span class="ky">def</span> <span class="nm">manage_history</span>(messages, budget=<span class="nm">4000</span>):
+    <span class="ky">if</span> count_tokens(messages) &lt; budget:
+        <span class="ky">return</span> messages
+    <span class="cm"># Summarise all but last 4 turns</span>
+    old = messages[:-<span class="nm">4</span>]
+    recent = messages[-<span class="nm">4</span>:]
+    summary = summarise(old)  <span class="cm"># ~200 tokens</span>
+    <span class="ky">return</span> [{<span class="st">"role"</span>:<span class="st">"user"</span>,<span class="st">"content"</span>:<span class="st">f"[Summary of prior context: {summary}]"</span>}] + recent</div>
+</div>
+
+<!-- TOOL SCHEMAS -->
+<div class="detail-panel" id="detail-tool-schemas">
+  <button class="detail-back" onclick="closeDetail('tool-schemas','all')">← Back</button>
+  <div class="detail-title">Tool Schema Tokens</div>
+  <div class="detail-subtitle">Every tool definition you include in a request costs tokens — even when that tool is never invoked. A 20-tool agent can waste 3,000+ tokens per request on schema definitions alone.</div>
+  <div class="detail-grid">
+    <div class="detail-box red">
+      <div class="detail-box-title red">The Schema Overhead Problem</div>
+      <div class="detail-box-content">
+        Typical tool schema sizes:<br><br>
+        <ul>
+          <li class="red">Simple tool (name + desc): ~80 tokens</li>
+          <li class="red">Medium tool (+ params): ~200 tokens</li>
+          <li class="red">Complex tool (+ enum + examples): ~400 tokens</li>
+          <li class="red">20 complex tools: ~8,000 tokens/request</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Lazy Schema Loading</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Include only tools relevant to the current task</li>
+          <li class="green">Use a router to select the right tool subset</li>
+          <li class="green">Start with name-only schemas; expand on first use</li>
+          <li class="green">Cache schema tokens with KV cache</li>
+          <li class="green">Compress descriptions without losing semantics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMPT COMPRESSION -->
+<div class="detail-panel" id="detail-prompt-compression">
+  <button class="detail-back" onclick="closeDetail('prompt-compression','all')">← Back</button>
+  <div class="detail-title">Prompt Compression</div>
+  <div class="detail-subtitle">Systematically reduce prompt length without reducing task quality. Well-compressed prompts often perform better — brevity forces clarity.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">LLMLingua-2 Compression</div>
+      <div class="detail-box-content">Microsoft's token-budget-aware prompt compressor. Removes semantically redundant tokens while preserving task-critical information. Achieves 4–8× compression with &lt;5% performance drop on most tasks.</div>
+    </div>
+    <div class="detail-box">
+      <div class="detail-box-title">Manual Compression Techniques</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>Replace narrative instructions with imperative directives</li>
+          <li>Use structured formats (YAML &gt; verbose JSON &gt; prose)</li>
+          <li>Remove pleasantries and meta-commentary</li>
+          <li>Deduplicate repeated concepts</li>
+          <li>Use domain abbreviations consistently</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="detail-grid-3">
+    <div class="detail-box red">
+      <div class="detail-box-title red">Before (87 tokens)</div>
+      <div class="detail-box-content">"You are a helpful customer service assistant who is always polite and professional. When a customer asks a question, please make sure to answer it thoroughly and provide any relevant information that might help them. Always be friendly and supportive."</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">After (22 tokens)</div>
+      <div class="detail-box-content">"Role: customer support agent. Tone: professional, concise. Answer user questions accurately. Ask for clarification if ambiguous."</div>
+    </div>
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Result</div>
+      <div class="detail-box-content">75% token reduction. Same (often better) output quality because the model receives cleaner, less ambiguous instructions.</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT TOKEN CONTROL -->
+<div class="detail-panel" id="detail-output-control">
+  <button class="detail-back" onclick="closeDetail('output-control','all')">← Back</button>
+  <div class="detail-title">Output Token Control</div>
+  <div class="detail-subtitle">Output tokens cost 3–5× more than input tokens and are the largest single cost lever most teams haven't pulled. Every token the model generates is money leaving your account.</div>
+  <div class="detail-grid">
+    <div class="detail-box red">
+      <div class="detail-box-title red">Always Set max_tokens</div>
+      <div class="detail-box-content">Never send a request without max_tokens. The default allows models to generate thousands of tokens for simple tasks. Even setting max_tokens=200 for classification tasks can cut output costs by 90%.</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Format-Constrained Output</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Use JSON mode — eliminates preamble tokens</li>
+          <li class="green">Specify exact output schema in the prompt</li>
+          <li class="green">Request bullet points, not paragraphs</li>
+          <li class="green">Specify maximum length explicitly ("max 3 sentences")</li>
+          <li class="green">Use "Answer only with: yes/no/unsure" for classification</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-note"><strong>The Verbosity Default:</strong> LLMs are trained to be thorough and helpful, which means they default to longer, more detailed responses. Override this explicitly in every prompt. "Be concise" is not enough — specify the exact format and maximum length.</div>
+</div>
+
+<!-- FEW SHOT -->
+<div class="detail-panel" id="detail-few-shot">
+  <button class="detail-back" onclick="closeDetail('few-shot','all')">← Back</button>
+  <div class="detail-title">Few-Shot Efficiency</div>
+  <div class="detail-subtitle">More examples don't linearly improve performance. Find the minimum effective shot count for each task type — most tasks need 1–3 examples when framed correctly.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Example Budget Guidelines</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>Classification tasks: 1–2 examples per class</li>
+          <li>Format transformation: 1 input/output pair</li>
+          <li>Code generation: 0–1 examples (use type hints instead)</li>
+          <li>Complex reasoning: 2–3 chain-of-thought examples</li>
+          <li>Highly specialised domain: 3–5 examples maximum</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Cached Example Patterns</div>
+      <div class="detail-box-content">Place all few-shot examples in the system prompt (cacheable) rather than repeating them per-request. Cache once, save millions of tokens. Use cache breakpoints to separate static examples from dynamic context.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STRUCTURED OUTPUT -->
+<div class="detail-panel" id="detail-structured-output">
+  <button class="detail-back" onclick="closeDetail('structured-output','all')">← Back</button>
+  <div class="detail-title">Structured Output</div>
+  <div class="detail-subtitle">Constrained generation produces exactly what you need — nothing more. It eliminates preamble, explanation padding, and post-processing extraction calls.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">JSON Mode Benefits</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>Eliminates "Sure, here is the JSON you requested:" preamble</li>
+          <li>Removes markdown code fences (```json)</li>
+          <li>No need for a second extraction call</li>
+          <li>Predictable token count for budgeting</li>
+          <li>Directly parseable — zero processing overhead</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Token Savings by Format</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Asking for JSON: 30–50% fewer output tokens</li>
+          <li class="green">Structured schema: 20–40% fewer tokens</li>
+          <li class="green">Bullet list vs prose: 40–60% fewer tokens</li>
+          <li class="green">Yes/No classification: 95% fewer tokens</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMPT CACHING -->
+<div class="detail-panel" id="detail-prompt-caching">
+  <button class="detail-back" onclick="closeDetail('prompt-caching','all')">← Back</button>
+  <div class="detail-title">Prompt Caching (KV Cache)</div>
+  <div class="detail-subtitle">The single highest-ROI optimisation available. Cache static context at the model layer and pay 90% less on every cache hit. Implement on day one.</div>
+  <div class="detail-grid">
+    <div class="detail-box green">
+      <div class="detail-box-title green">How KV Cache Works</div>
+      <div class="detail-box-content">The model computes key-value attention matrices for your prompt. With caching enabled, these are stored server-side. Subsequent requests with identical prefix pay only for the cache read (~10% of input cost) instead of full recomputation.</div>
+    </div>
+    <div class="detail-box red">
+      <div class="detail-box-title red">Cache Killers — Avoid These</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="red">Timestamps or request IDs in system prompt</li>
+          <li class="red">User name/personalisation before static content</li>
+          <li class="red">Dynamic content injected before examples</li>
+          <li class="red">Random ordering of tool schemas</li>
+          <li class="red">Any variation in the static prefix</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-note"><strong>Architecture Rule:</strong> Always place content in order of stability: system instructions → documents → examples → (cache boundary) → conversation history → user message. Cache everything above the boundary.</div>
+  <div class="code-block"><span class="cm"># Anthropic cache_control implementation</span>
+client.messages.create(
+  model=<span class="st">"claude-sonnet-4-20250514"</span>,
+  system=[
+    {<span class="st">"type"</span>: <span class="st">"text"</span>, <span class="st">"text"</span>: system_prompt,
+     <span class="st">"cache_control"</span>: {<span class="st">"type"</span>: <span class="st">"ephemeral"</span>}}  <span class="cm"># Cache this block</span>
+  ],
+  messages=[
+    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: [
+      {<span class="st">"type"</span>: <span class="st">"text"</span>, <span class="st">"text"</span>: document_text,
+       <span class="st">"cache_control"</span>: {<span class="st">"type"</span>: <span class="st">"ephemeral"</span>}},  <span class="cm"># Cache docs too</span>
+      {<span class="st">"type"</span>: <span class="st">"text"</span>, <span class="st">"text"</span>: user_message}
+    ]}
+  ]
+)</div>
+</div>
+
+<!-- SEMANTIC CACHE -->
+<div class="detail-panel" id="detail-semantic-cache">
+  <button class="detail-back" onclick="closeDetail('semantic-cache','all')">← Back</button>
+  <div class="detail-title">Semantic Response Caching</div>
+  <div class="detail-subtitle">Cache full AI responses for semantically similar queries. A vector similarity lookup serves 30–60% of requests with zero LLM cost — the most powerful throughput multiplier available.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">How It Works</div>
+      <div class="detail-box-content">1. Embed the user query → vector<br>2. Search Redis/Pinecone for similar cached queries<br>3. If cosine similarity &gt; threshold (0.92+): return cached response<br>4. If miss: call LLM, store response + embedding in cache<br>5. TTL-based expiry for time-sensitive content</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">When It Excels</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">FAQ and support bots (high query repetition)</li>
+          <li class="green">Document Q&amp;A on stable content</li>
+          <li class="green">Product description generation</li>
+          <li class="green">Code explanation for common patterns</li>
+          <li class="green">High-traffic consumer applications</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="code-block"><span class="nm">SIMILARITY_THRESHOLD</span> = <span class="nm">0.92</span>
+
+<span class="ky">async def</span> <span class="nm">cached_completion</span>(query: str) -> str:
+    query_vec = await embed(query)
+    hit = await redis.vector_search(query_vec, threshold=<span class="nm">SIMILARITY_THRESHOLD</span>)
+    <span class="ky">if</span> hit:
+        metrics.increment(<span class="st">"cache_hits"</span>)
+        <span class="ky">return</span> hit.response
+    response = await llm_call(query)
+    await redis.store(query_vec, response, ttl=<span class="nm">3600</span>)
+    <span class="ky">return</span> response</div>
+</div>
+
+<!-- TOOL MEMOIZATION -->
+<div class="detail-panel" id="detail-tool-memoization">
+  <button class="detail-back" onclick="closeDetail('tool-memoization','all')">← Back</button>
+  <div class="detail-title">Tool Result Memoization</div>
+  <div class="detail-subtitle">Agent loops often call the same tools with identical parameters multiple times. Memoising results eliminates redundant API calls and dramatically reduces context pollution from repeated tool outputs.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Within-Session Cache</div>
+      <div class="detail-box-content">Hash (tool_name + params) → cache result for the duration of an agent run. A weather lookup, database query, or API call performed in iteration 2 need not re-execute in iteration 5.</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Cross-Session Cache</div>
+      <div class="detail-box-content">For stable data (product catalogues, configuration, user profiles), persist tool results in Redis with appropriate TTL. Saves both token costs and downstream API costs simultaneously.</div>
+    </div>
+  </div>
+</div>
+
+<!-- EMBEDDING CACHE -->
+<div class="detail-panel" id="detail-embedding-cache">
+  <button class="detail-back" onclick="closeDetail('embedding-cache','all')">← Back</button>
+  <div class="detail-title">Embedding Caching</div>
+  <div class="detail-subtitle">Embedding costs are often overlooked — but re-embedding unchanged documents at query time is pure waste. Persist vectors; only recompute on actual content changes.</div>
+  <div class="detail-grid">
+    <div class="detail-box">
+      <div class="detail-box-title">Storage Strategy</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>Store document hash → embedding vector</li>
+          <li>On update: diff hashes, re-embed only changed chunks</li>
+          <li>Use pgvector, Pinecone, or Weaviate for persistent storage</li>
+          <li>Cold-start: bulk embed entire corpus once</li>
+          <li>Warm path: hash check before any embed call</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Cost Savings</div>
+      <div class="detail-box-content">A 10,000-document corpus embedded daily costs ~$1/day with text-embedding-3-small. With caching and differential updates (5% daily change rate), cost drops to ~$0.05/day — 95% reduction.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHUNK SIZING -->
+<div class="detail-panel" id="detail-chunk-sizing">
+  <button class="detail-back" onclick="closeDetail('chunk-sizing','all')">← Back</button>
+  <div class="detail-title">Chunk Sizing Strategy</div>
+  <div class="detail-subtitle">Chunk size directly controls RAG context quality and cost. Too large: bloated context with low signal. Too small: fragmented context loses coherence. The optimal size is task-dependent.</div>
+  <div class="detail-grid-3">
+    <div class="detail-box red">
+      <div class="detail-box-title red">Too Large (&gt;1000 tokens)</div>
+      <div class="detail-box-content">High token cost, low retrieval precision, relevant info buried in noise. Retrieval similarity becomes diluted across multiple topics per chunk.</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Sweet Spot (200–400 tokens)</div>
+      <div class="detail-box-content">Balanced precision and coherence. Works for most document types. Combine with sentence-aware splitting to avoid mid-sentence breaks.</div>
+    </div>
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Too Small (&lt;50 tokens)</div>
+      <div class="detail-box-content">High retrieval noise, fragments miss context, requires larger top-k to find relevant content. Often worse retrieval quality than larger chunks.</div>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-box">
+      <div class="detail-box-title">Hybrid Chunking</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>Split on semantic boundaries (paragraphs, sections)</li>
+          <li>Add 10–20% overlap to prevent context cliffs</li>
+          <li>Store parent chunk → retrieve child chunks</li>
+          <li>Proposition chunking: one factual claim per chunk</li>
+          <li>Code: split by function/class, not arbitrary length</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Metadata Injection</div>
+      <div class="detail-box-content">Prepend source, section title, and page number to each chunk (&lt;30 tokens). This improves retrieval precision and allows context attribution without embedding these in the chunk content itself.</div>
+    </div>
+  </div>
+</div>
+
+<!-- RERANKING -->
+<div class="detail-panel" id="detail-reranking">
+  <button class="detail-back" onclick="closeDetail('reranking','all')">← Back</button>
+  <div class="detail-title">Re-ranking &amp; Precision Retrieval</div>
+  <div class="detail-subtitle">Retrieve broadly with vector search, then filter aggressively with a re-ranker. Send top-3 high-precision chunks instead of top-20 noisy ones. Same quality, 80% fewer context tokens.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Two-Stage Pipeline</div>
+      <div class="detail-box-content"><strong>Stage 1 — Vector Recall:</strong> Retrieve top-50 candidates by embedding similarity (fast, approximate).<br><br><strong>Stage 2 — Cross-Encoder Re-rank:</strong> Score each candidate against the query with a cross-encoder model (slower, precise). Keep top-3 to top-5.<br><br><strong>Result:</strong> 10× better precision at 20% of the context cost.</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Re-ranker Options</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green"><strong>Cohere Rerank</strong> — hosted, easiest integration</li>
+          <li class="green"><strong>BGE-Reranker</strong> — open source, self-hostable</li>
+          <li class="green"><strong>cross-encoder/ms-marco</strong> — HuggingFace, free</li>
+          <li class="green"><strong>FlashRank</strong> — ultra-fast, minimal dependencies</li>
+          <li class="green"><strong>LLM-as-reranker</strong> — highest quality, higher cost</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RAG BUDGET -->
+<div class="detail-panel" id="detail-rag-budget">
+  <button class="detail-back" onclick="closeDetail('rag-budget','all')">← Back</button>
+  <div class="detail-title">RAG Context Budget Control</div>
+  <div class="detail-subtitle">Set a hard token budget for all retrieved context and enforce it before sending. RAG context is the most controllable cost layer — it should never exceed its allocation.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Budget Allocation</div>
+      <div class="detail-box-content">For an 8K token request budget:<br><br>System prompt: 500 tokens<br>History: 1,500 tokens<br><strong>RAG budget: 1,500 tokens</strong><br>Tool schemas: 500 tokens<br>User message: 500 tokens<br>Output reserved: 3,500 tokens<br><br>RAG content beyond 1,500 tokens is truncated by relevance score.</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Enforcement Strategies</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Count retrieved chunks before injection</li>
+          <li class="green">Sort by relevance score, take until budget exhausted</li>
+          <li class="green">Truncate individual chunks at token boundary</li>
+          <li class="green">Prefer fewer complete chunks over many truncated ones</li>
+          <li class="green">Log budget utilisation per request</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RAPTOR -->
+<div class="detail-panel" id="detail-raptor">
+  <button class="detail-back" onclick="closeDetail('raptor','all')">← Back</button>
+  <div class="detail-title">Summary Indexing &amp; RAPTOR</div>
+  <div class="detail-subtitle">Build a hierarchy of summaries from your corpus. Retrieve a compact 300-token summary instead of 3,000 tokens of raw chunks for high-level queries.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">RAPTOR Architecture</div>
+      <div class="detail-box-content"><strong>Level 0:</strong> Original chunks (200–400 tokens)<br><strong>Level 1:</strong> Cluster summaries (100–200 tokens, ~10 chunks per cluster)<br><strong>Level 2:</strong> Section summaries (50–100 tokens)<br><strong>Level 3:</strong> Document summaries (30–50 tokens)<br><br>Query routing decides which level to retrieve from based on query specificity.</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Query Routing Logic</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">General question → top-level summary (50 tokens)</li>
+          <li class="green">Section-specific → level 1 summary (150 tokens)</li>
+          <li class="green">Detail-specific → leaf chunks (300 tokens)</li>
+          <li class="green">Mixed → hybrid retrieval across levels</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AGENT LOOP -->
+<div class="detail-panel" id="detail-agent-loop">
+  <button class="detail-back" onclick="closeDetail('agent-loop','all')">← Back</button>
+  <div class="detail-title">Agent Loop Token Explosion</div>
+  <div class="detail-subtitle">The most dangerous cost pattern in agentic AI. Each iteration re-sends the entire accumulated context. 10 iterations isn't 10× the cost — it's 10–50× due to compounding history.</div>
+  <div class="warn-note"><strong>Critical Warning:</strong> An unconstrained agent loop on Claude Opus 4 can accumulate $5–$20 in token costs per task. Multiply by 1,000 daily tasks and you have a $5,000–$20,000/day bill from a single feature.</div>
+  <table class="compare-table">
+    <thead><tr><th>Iteration</th><th>New Tokens</th><th>Cumulative Context</th><th>Relative Cost</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1,500</td><td>1,500</td><td>1×</td></tr>
+      <tr><td>2</td><td>800</td><td>2,300</td><td>1.5×</td></tr>
+      <tr><td>3</td><td>800</td><td>3,100</td><td>2.1×</td></tr>
+      <tr><td>5</td><td>800</td><td>4,700</td><td>3.1×</td></tr>
+      <tr><td>10</td><td>800</td><td>8,700</td><td>5.8×</td></tr>
+    </tbody>
+  </table>
+  <div class="detail-grid">
+    <div class="detail-box green">
+      <div class="detail-box-title green">Control Mechanisms</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Hard iteration limit (never exceed 10 iterations)</li>
+          <li class="green">Token budget per loop (abort if exceeded)</li>
+          <li class="green">Compact tool results before adding to history</li>
+          <li class="green">Summarise completed sub-tasks mid-loop</li>
+          <li class="green">Use scratchpad pattern: thinking separate from history</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box red">
+      <div class="detail-box-title red">Anti-Patterns</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="red">Appending full tool results without extraction</li>
+          <li class="red">Re-injecting system instructions each iteration</li>
+          <li class="red">No iteration or token limit</li>
+          <li class="red">Logging verbose chain-of-thought in context</li>
+          <li class="red">Re-retrieving RAG context every iteration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="code-block"><span class="ky">class</span> <span class="nm">BudgetedAgent</span>:
+    <span class="ky">def</span> <span class="nm">__init__</span>(self, max_iter=<span class="nm">8</span>, token_budget=<span class="nm">40000</span>):
+        self.max_iter = max_iter; self.token_budget = token_budget
+        self.total_tokens = <span class="nm">0</span>; self.iter = <span class="nm">0</span>
+
+    <span class="ky">def</span> <span class="nm">step</span>(self, messages):
+        <span class="ky">if</span> self.iter >= self.max_iter:
+            <span class="ky">raise</span> AgentLimitError(<span class="st">"Max iterations reached"</span>)
+        estimated = count_tokens(messages)
+        <span class="ky">if</span> self.total_tokens + estimated > self.token_budget:
+            messages = self.compress_history(messages)
+        result = llm_call(messages)
+        self.total_tokens += result.usage.total_tokens
+        self.iter += <span class="nm">1</span>
+        <span class="ky">return</span> result</div>
+</div>
+
+<!-- MULTI-AGENT -->
+<div class="detail-panel" id="detail-multi-agent">
+  <button class="detail-back" onclick="closeDetail('multi-agent','all')">← Back</button>
+  <div class="detail-title">Multi-Agent Overhead</div>
+  <div class="detail-subtitle">Every agent-to-agent message serialises full context. An orchestrator managing 5 sub-agents can easily generate 5× the token cost of a single-agent approach if not architected carefully.</div>
+  <div class="detail-grid">
+    <div class="detail-box red">
+      <div class="detail-box-title red">Where Cost Explodes</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="red">Orchestrator passes full context to each sub-agent</li>
+          <li class="red">Sub-agents return full conversation history</li>
+          <li class="red">Context duplicated across all parallel branches</li>
+          <li class="red">Each agent re-loads tool schemas independently</li>
+          <li class="red">No shared memory — same research done repeatedly</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Efficient Architecture</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Pass only task-relevant context to sub-agents</li>
+          <li class="green">Sub-agents return structured summaries, not full history</li>
+          <li class="green">Use a shared read-only memory store</li>
+          <li class="green">Centralised tool schema registry (cached)</li>
+          <li class="green">Orchestrator compresses sub-agent outputs before aggregation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLANNING REASONING -->
+<div class="detail-panel" id="detail-planning-reasoning">
+  <button class="detail-back" onclick="closeDetail('planning-reasoning','all')">← Back</button>
+  <div class="detail-title">Planning &amp; Reasoning Costs</div>
+  <div class="detail-subtitle">Extended thinking, chain-of-thought, and planning steps generate thousands of tokens before the actual response begins. Budget reasoning tokens as a first-class cost category.</div>
+  <div class="detail-grid">
+    <div class="detail-box red">
+      <div class="detail-box-title red">Reasoning Token Reality</div>
+      <div class="detail-box-content">Claude's extended thinking can generate 5,000–20,000 thinking tokens per request. At Opus 4 output pricing ($75/1M), 20,000 thinking tokens = $1.50 per request — before the actual response.</div>
+    </div>
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Budget_tokens Parameter</div>
+      <div class="detail-box-content">Anthropic's thinking API accepts a budget_tokens parameter to cap reasoning length. Set this based on task complexity: simple tasks need 1,000 tokens of thinking; complex reasoning rarely benefits beyond 10,000.</div>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-box green">
+      <div class="detail-box-title green">When to Use Extended Thinking</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Multi-step mathematical reasoning</li>
+          <li class="green">Complex code architecture decisions</li>
+          <li class="green">Long-horizon planning tasks</li>
+          <li class="green">Tasks requiring self-verification</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box red">
+      <div class="detail-box-title red">When NOT to Use It</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="red">Simple extraction or classification</li>
+          <li class="red">Formatting or transformation tasks</li>
+          <li class="red">Factual retrieval from provided context</li>
+          <li class="red">Any task a standard call handles correctly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL RESULT MGMT -->
+<div class="detail-panel" id="detail-tool-result-mgmt">
+  <button class="detail-back" onclick="closeDetail('tool-result-mgmt','all')">← Back</button>
+  <div class="detail-title">Tool Call Result Management</div>
+  <div class="detail-subtitle">Raw API results injected directly into context are the most common source of token waste in agentic systems. A 50KB API response contains ~12,000 tokens — extract the 200 tokens you actually need.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Extraction Pattern</div>
+      <div class="detail-box-content">Define a result schema for each tool call. After receiving the result, run a lightweight extraction step that pulls only the fields needed for the current task before appending to agent history. Never append raw API responses.</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Compact Serialisation</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Remove null/empty fields from JSON results</li>
+          <li class="green">Use short field names in tool result schemas</li>
+          <li class="green">Truncate long string fields at character limit</li>
+          <li class="green">Aggregate arrays: "47 items, first 3: [...]"</li>
+          <li class="green">Return status codes, not full error messages</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODEL ROUTING -->
+<div class="detail-panel" id="detail-model-routing">
+  <button class="detail-back" onclick="closeDetail('model-routing','all')">← Back</button>
+  <div class="detail-title">Intelligent Model Routing</div>
+  <div class="detail-subtitle">Not every task needs a frontier model. Route 80% of requests to fast, cheap models — reserve Opus-tier only for tasks that genuinely require it. Potential 80% cost reduction on model spend.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Routing Tiers</div>
+      <div class="detail-box-content">
+        <strong>Tier 1 (Micro):</strong> Classification, extraction, simple Q&amp;A → Haiku 3.5 or GPT-4o mini<br><br>
+        <strong>Tier 2 (Standard):</strong> Generation, summarisation, code completion → Sonnet 4 or GPT-4o<br><br>
+        <strong>Tier 3 (Advanced):</strong> Complex reasoning, novel problems, high-stakes → Opus 4 or o1
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Routing Signals</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Task type (classify, generate, reason)</li>
+          <li class="green">Estimated output length</li>
+          <li class="green">Domain complexity score</li>
+          <li class="green">User tier / SLA requirement</li>
+          <li class="green">Confidence from a cheap classifier model</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <table class="compare-table">
+    <thead><tr><th>Task Type</th><th>Recommended Model</th><th>Relative Cost</th><th>Quality Impact</th></tr></thead>
+    <tbody>
+      <tr><td>Binary classification</td><td>Haiku 3.5</td><td>1×</td><td>None</td></tr>
+      <tr><td>Entity extraction</td><td>Haiku 3.5</td><td>1×</td><td>Minimal</td></tr>
+      <tr><td>Summarisation</td><td>Sonnet 4</td><td>4×</td><td>Noticeable on long docs</td></tr>
+      <tr><td>Code generation</td><td>Sonnet 4</td><td>4×</td><td>Significant quality gap</td></tr>
+      <tr><td>Complex reasoning</td><td>Opus 4</td><td>19×</td><td>Major quality difference</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SPECULATIVE -->
+<div class="detail-panel" id="detail-speculative">
+  <button class="detail-back" onclick="closeDetail('speculative','all')">← Back</button>
+  <div class="detail-title">Speculative Decoding</div>
+  <div class="detail-subtitle">A small draft model generates token candidates in parallel; the large model verifies and corrects them. Same output quality at 2–4× higher throughput and lower effective latency.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">How It Works</div>
+      <div class="detail-box-content">1. Small draft model (e.g., Haiku) proposes K tokens<br>2. Large model evaluates all K tokens in parallel<br>3. Accepted tokens are kept; first rejection restarts<br>4. Net effect: 2–4× speed improvement on simple continuations<br>5. Best for code completion, template filling, factual continuation</div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Cost-Latency Trade-off</div>
+      <div class="detail-box-content">Speculative decoding doesn't reduce total tokens — it reduces wall-clock latency. The cost is similar to running both models. Value is in user experience and throughput capacity, not direct token savings.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FINE TUNING -->
+<div class="detail-panel" id="detail-fine-tuning">
+  <button class="detail-back" onclick="closeDetail('fine-tuning','all')">← Back</button>
+  <div class="detail-title">Fine-Tuning for Prompt Reduction</div>
+  <div class="detail-subtitle">Bake repetitive instructions, style, and domain knowledge into the model weights. Eliminate 80% of system prompt tokens for high-volume, predictable tasks. Best ROI at 50,000+ requests/month.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">What Fine-Tuning Eliminates</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>Role and persona descriptions</li>
+          <li>Output format instructions</li>
+          <li>Domain-specific terminology definitions</li>
+          <li>Company-specific rules and constraints</li>
+          <li>Few-shot examples baked into weights</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Break-Even Analysis</div>
+      <div class="detail-box-content">Fine-tuning cost: ~$500–$2,000 one-time.<br><br>Savings: 1,500-token system prompt × 100K requests/month × $0.003 = $450/month.<br><br><strong>Break-even: &lt;4 months. ROI thereafter: infinite.</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- BATCH PROCESSING -->
+<div class="detail-panel" id="detail-batch-processing">
+  <button class="detail-back" onclick="closeDetail('batch-processing','all')">← Back</button>
+  <div class="detail-title">Batch Processing</div>
+  <div class="detail-subtitle">Async batch APIs offer 50% cost reduction for non-real-time workloads. Most AI tasks don't require synchronous responses — classification, enrichment, and generation jobs can be batched.</div>
+  <div class="detail-grid">
+    <div class="detail-box green">
+      <div class="detail-box-title green">Tasks Suited for Batching</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Content classification at scale</li>
+          <li class="green">Document summarisation pipelines</li>
+          <li class="green">Data enrichment and extraction</li>
+          <li class="green">Embedding generation for new content</li>
+          <li class="green">Evaluation and testing runs</li>
+          <li class="green">Overnight report generation</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">API Options</div>
+      <div class="detail-box-content">
+        <strong>Anthropic Batch API:</strong> 50% discount, 24h processing<br><br>
+        <strong>OpenAI Batch API:</strong> 50% discount, 24h processing<br><br>
+        Queue non-urgent work into nightly batch runs. Split real-time from async paths at the application layer.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OBSERVABILITY -->
+<div class="detail-panel" id="detail-observability">
+  <button class="detail-back" onclick="closeDetail('observability','all')">← Back</button>
+  <div class="detail-title">Token Observability &amp; Tracing</div>
+  <div class="detail-subtitle">You cannot optimise what you don't measure. Structured token telemetry per request, per feature, and per user is the non-negotiable foundation of all AI FinOps.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Minimum Viable Telemetry</div>
+      <div class="detail-box-content">
+        <ul>
+          <li>request_id, timestamp, user_id, feature_id</li>
+          <li>model, prompt_tokens, completion_tokens</li>
+          <li>cache_hit (bool), cache_tokens_saved</li>
+          <li>latency_ms, cost_usd</li>
+          <li>agent_iteration (for agentic calls)</li>
+          <li>rag_chunks_retrieved, rag_tokens_used</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Key Dashboards</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Cost/day by feature and model</li>
+          <li class="green">Token size distribution (p50, p95, p99)</li>
+          <li class="green">Cache hit rate trend</li>
+          <li class="green">Top 10 most expensive request patterns</li>
+          <li class="green">Per-user token consumption leaderboard</li>
+          <li class="green">Cost per successful task completion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="code-block"><span class="cm"># Instrumentation decorator — wrap every LLM call</span>
+<span class="ky">def</span> <span class="nm">track_tokens</span>(feature: str):
+    <span class="ky">def</span> decorator(fn):
+        <span class="ky">async def</span> wrapper(*args, **kwargs):
+            result = <span class="ky">await</span> fn(*args, **kwargs)
+            await metrics.record({
+                <span class="st">"feature"</span>: feature,
+                <span class="st">"input_tokens"</span>: result.usage.input_tokens,
+                <span class="st">"output_tokens"</span>: result.usage.output_tokens,
+                <span class="st">"cache_read"</span>: result.usage.cache_read_input_tokens,
+                <span class="st">"cost_usd"</span>: calculate_cost(result.usage)
+            })
+            <span class="ky">return</span> result
+        <span class="ky">return</span> wrapper
+    <span class="ky">return</span> decorator</div>
+</div>
+
+<!-- RATE LIMITING -->
+<div class="detail-panel" id="detail-rate-limiting">
+  <button class="detail-back" onclick="closeDetail('rate-limiting','all')">← Back</button>
+  <div class="detail-title">Rate Limiting &amp; Quotas</div>
+  <div class="detail-subtitle">Token quotas are the first line of defence against runaway costs and abuse. Define limits at every level and enforce them before the API call — not after the bill arrives.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Quota Hierarchy</div>
+      <div class="detail-box-content">
+        <strong>Per-request:</strong> Max input + output tokens hard limit<br>
+        <strong>Per-user/hour:</strong> Prevent individual abuse<br>
+        <strong>Per-user/day:</strong> Fair use enforcement<br>
+        <strong>Per-feature/day:</strong> Budget allocation per product area<br>
+        <strong>Per-team/month:</strong> Departmental budget cap<br>
+        <strong>Platform total:</strong> Global circuit breaker
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Graceful Quota Responses</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Warn at 80% of daily quota</li>
+          <li class="green">Throttle to reduced limits at 90%</li>
+          <li class="green">Return cached/static responses at 100%</li>
+          <li class="green">Show quota status in user-facing UI</li>
+          <li class="green">Allow quota increases via self-service portal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COST ATTRIBUTION -->
+<div class="detail-panel" id="detail-cost-attribution">
+  <button class="detail-back" onclick="closeDetail('cost-attribution','all')">← Back</button>
+  <div class="detail-title">Cost Attribution &amp; Chargeback</div>
+  <div class="detail-subtitle">Attribute every token to a cost centre. Showback drives awareness; chargeback drives accountability. Both are necessary to make AI costs manageable at organisational scale.</div>
+  <div class="detail-grid">
+    <div class="detail-box amber">
+      <div class="detail-box-title amber">Tagging Strategy</div>
+      <div class="detail-box-content">
+        Tag every API request with:<br><br>
+        <code>team</code>, <code>product</code>, <code>feature</code>, <code>environment</code>, <code>user_tier</code>, <code>experiment_id</code><br><br>
+        Route tags to your observability platform (Datadog, Grafana, AWS Cost Explorer). Generate monthly cost-by-dimension reports automatically.
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Chargeback Models</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green"><strong>Showback:</strong> Report costs to teams, no billing</li>
+          <li class="green"><strong>Soft chargeback:</strong> Internal credits, no real money</li>
+          <li class="green"><strong>Hard chargeback:</strong> Real budget impact on team P&amp;L</li>
+          <li class="green">Start with showback — accountability emerges naturally</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ANOMALY DETECTION -->
+<div class="detail-panel" id="detail-anomaly-detection">
+  <button class="detail-back" onclick="closeDetail('anomaly-detection','all')">← Back</button>
+  <div class="detail-title">Token Anomaly Detection</div>
+  <div class="detail-subtitle">Cost spikes happen fast. An agent loop bug, a prompt injection, or a traffic surge can generate thousands of dollars in unexpected charges in minutes. Automated anomaly detection is non-optional at scale.</div>
+  <div class="detail-grid">
+    <div class="detail-box red">
+      <div class="detail-box-title red">Anomaly Signals to Monitor</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="red">Request token count &gt; 3× rolling average</li>
+          <li class="red">Single user consuming &gt;10% of daily budget</li>
+          <li class="red">Agent iteration count exceeds threshold</li>
+          <li class="red">Cost/hour spike &gt;2× standard deviation</li>
+          <li class="red">Cache hit rate drops &gt;20% unexpectedly</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail-box green">
+      <div class="detail-box-title green">Response Actions</div>
+      <div class="detail-box-content">
+        <ul>
+          <li class="green">Alert: Slack/PagerDuty notification</li>
+          <li class="green">Throttle: Reduce quota for offending entity</li>
+          <li class="green">Block: Stop requests from suspected abuse</li>
+          <li class="green">Investigate: Flag request for human review</li>
+          <li class="green">Rollback: Revert recent prompt/model changes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALCULATORS SECTION -->
+<section class="section" id="sec-calculators">
+  <div class="section-title">Token Cost Calculators</div>
+  <div class="section-desc">Model your actual token costs, visualise optimisation savings, and understand the compounding impact of agentic loops. All calculations run locally — no data sent anywhere.</div>
+
+  <!-- CALCULATOR 1: PER-REQUEST COST -->
+  <div class="calc-section">
+    <div class="calc-title">1. Per-Request Cost Breakdown</div>
+    <div class="calc-desc">Model the full token cost of a single AI request — every layer included. Select a model and adjust inputs to see your true per-call cost.</div>
+    <div class="model-tabs" id="model-tabs-c1">
+      <button class="model-tab active" onclick="setModel('sonnet4',this)">Claude Sonnet 4</button>
+      <button class="model-tab" onclick="setModel('haiku35',this)">Claude Haiku 3.5</button>
+      <button class="model-tab" onclick="setModel('opus4',this)">Claude Opus 4</button>
+      <button class="model-tab" onclick="setModel('gpt4o',this)">GPT-4o</button>
+      <button class="model-tab" onclick="setModel('gpt4omini',this)">GPT-4o mini</button>
+      <button class="model-tab" onclick="setModel('custom',this)">Custom</button>
+    </div>
+    <div id="custom-pricing" style="display:none;gap:16px;margin-bottom:20px;grid-template-columns:1fr 1fr 1fr;" class="detail-grid-3">
+      <div class="calc-field"><label>Input Price ($/1M tokens)</label><input type="number" id="custom-input-price" value="3.00" step="0.01" onchange="calcC1()" style="width:100%;padding:8px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:var(--font-mono);font-size:13px"></div>
+      <div class="calc-field"><label>Output Price ($/1M tokens)</label><input type="number" id="custom-output-price" value="15.00" step="0.01" onchange="calcC1()" style="width:100%;padding:8px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:var(--font-mono);font-size:13px"></div>
+      <div class="calc-field"><label>Cache Read Price ($/1M tokens)</label><input type="number" id="custom-cache-price" value="0.30" step="0.01" onchange="calcC1()" style="width:100%;padding:8px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:var(--font-mono);font-size:13px"></div>
+    </div>
+    <div class="calc-grid">
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label>System Prompt Tokens</label>
+          <input type="range" id="c1-system" min="0" max="4000" value="1000" step="100" oninput="calcC1()">
+          <div class="field-row"><span class="field-val" id="c1-system-val">1,000</span><span class="field-hint">avg 500–2,000</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Conversation History Tokens</label>
+          <input type="range" id="c1-history" min="0" max="10000" value="2000" step="200" oninput="calcC1()">
+          <div class="field-row"><span class="field-val" id="c1-history-val">2,000</span><span class="field-hint">grows with turns</span></div>
+        </div>
+        <div class="calc-field">
+          <label>RAG Context Tokens</label>
+          <input type="range" id="c1-rag" min="0" max="8000" value="2000" step="200" oninput="calcC1()">
+          <div class="field-row"><span class="field-val" id="c1-rag-val">2,000</span><span class="field-hint">retrieved chunks</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Tool Schema Tokens</label>
+          <input type="range" id="c1-tools" min="0" max="4000" value="500" step="100" oninput="calcC1()">
+          <div class="field-row"><span class="field-val" id="c1-tools-val">500</span><span class="field-hint">~200 per tool</span></div>
+        </div>
+        <div class="calc-field">
+          <label>User Message Tokens</label>
+          <input type="range" id="c1-user" min="10" max="2000" value="200" step="50" oninput="calcC1()">
+          <div class="field-row"><span class="field-val" id="c1-user-val">200</span><span class="field-hint">actual user query</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Output Tokens</label>
+          <input type="range" id="c1-output" min="50" max="4000" value="500" step="50" oninput="calcC1()">
+          <div class="field-row"><span class="field-val" id="c1-output-val">500</span><span class="field-hint">model response length</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Cache Hit Rate</label>
+          <input type="range" id="c1-cache" min="0" max="100" value="60" step="5" oninput="calcC1()">
+          <div class="field-row"><span class="field-val" id="c1-cache-val">60%</span><span class="field-hint">% of system+static tokens cached</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Agent Loop Iterations</label>
+          <input type="range" id="c1-iters" min="1" max="15" value="1" step="1" oninput="calcC1()">
+          <div class="field-row"><span class="field-val" id="c1-iters-val">1</span><span class="field-hint">1 = single request</span></div>
+        </div>
+      </div>
+      <div class="calc-results" id="c1-results">
+        <div class="result-item"><div><div class="result-label">Total Input Tokens</div><div class="result-sublabel">All layers combined</div></div><div class="result-val" id="r1-input">5,700</div></div>
+        <div class="result-item"><div><div class="result-label">Effective Input Cost</div><div class="result-sublabel">After cache discount</div></div><div class="result-val" id="r1-input-cost">$0.0117</div></div>
+        <div class="result-item"><div><div class="result-label">Output Cost</div><div class="result-sublabel">Most expensive layer</div></div><div class="result-val warn" id="r1-output-cost">$0.0075</div></div>
+        <div class="result-item"><div><div class="result-label">Total Cost / Request</div><div class="result-sublabel">All tokens, all layers</div></div><div class="result-val big" id="r1-total">$0.019</div></div>
+        <div class="result-item"><div><div class="result-label">Monthly Cost (10K req/day)</div><div class="result-sublabel">At current settings</div></div><div class="result-val warn" id="r1-monthly">$5,790</div></div>
+        <div class="result-item"><div><div class="result-label">Cache Savings / Request</div><div class="result-sublabel">vs no caching</div></div><div class="result-val good" id="r1-savings">$0.006</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALCULATOR 2: OPTIMISATION SAVINGS -->
+  <div class="calc-section">
+    <div class="calc-title">2. Optimisation Savings Calculator</div>
+    <div class="calc-desc">Start from your baseline monthly AI spend and activate optimisation levers to see potential savings. Adjust sliders to match your deployment scenario.</div>
+    <div class="calc-grid">
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label>Baseline Monthly Spend ($)</label>
+          <input type="range" id="c2-base" min="500" max="50000" value="10000" step="500" oninput="calcC2()">
+          <div class="field-row"><span class="field-val" id="c2-base-val">$10,000</span><span class="field-hint">current monthly AI bill</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Prompt Caching Impact</label>
+          <input type="range" id="c2-caching" min="0" max="60" value="30" step="5" oninput="calcC2()">
+          <div class="field-row"><span class="field-val" id="c2-caching-val">30%</span><span class="field-hint">depends on % static context</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Prompt Compression Savings</label>
+          <input type="range" id="c2-compression" min="0" max="50" value="20" step="5" oninput="calcC2()">
+          <div class="field-row"><span class="field-val" id="c2-compression-val">20%</span><span class="field-hint">system + few-shot reduction</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Semantic Cache Hit Rate</label>
+          <input type="range" id="c2-semantic" min="0" max="60" value="25" step="5" oninput="calcC2()">
+          <div class="field-row"><span class="field-val" id="c2-semantic-val">25%</span><span class="field-hint">% requests served from cache</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Model Routing Savings</label>
+          <input type="range" id="c2-routing" min="0" max="70" value="35" step="5" oninput="calcC2()">
+          <div class="field-row"><span class="field-val" id="c2-routing-val">35%</span><span class="field-hint">% of requests routed to smaller models</span></div>
+        </div>
+        <div class="calc-field">
+          <label>RAG Re-ranking Savings</label>
+          <input type="range" id="c2-rag" min="0" max="40" value="15" step="5" oninput="calcC2()">
+          <div class="field-row"><span class="field-val" id="c2-rag-val">15%</span><span class="field-hint">context reduction from precision retrieval</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Output Control Savings</label>
+          <input type="range" id="c2-output" min="0" max="50" value="20" step="5" oninput="calcC2()">
+          <div class="field-row"><span class="field-val" id="c2-output-val">20%</span><span class="field-hint">from max_tokens + format constraints</span></div>
+        </div>
+      </div>
+      <div class="calc-results">
+        <div class="result-item"><div><div class="result-label">Baseline Monthly Spend</div></div><div class="result-val" id="r2-base">$10,000</div></div>
+        <div class="result-item"><div><div class="result-label">Prompt Caching Saves</div></div><div class="result-val good" id="r2-caching">$3,000</div></div>
+        <div class="result-item"><div><div class="result-label">Prompt Compression Saves</div></div><div class="result-val good" id="r2-compression">$1,400</div></div>
+        <div class="result-item"><div><div class="result-label">Semantic Cache Saves</div></div><div class="result-val good" id="r2-semantic">$1,575</div></div>
+        <div class="result-item"><div><div class="result-label">Model Routing Saves</div></div><div class="result-val good" id="r2-routing">$1,531</div></div>
+        <div class="result-item"><div><div class="result-label">RAG + Output Saves</div></div><div class="result-val good" id="r2-ragout">$701</div></div>
+        <div class="result-item"><div><div class="result-label">Optimised Monthly Spend</div></div><div class="result-val big" id="r2-final">$1,793</div></div>
+        <div class="result-item"><div><div class="result-label">Total Annual Savings</div></div><div class="result-val good" id="r2-annual">$98,484</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALCULATOR 3: AGENT LOOP COST -->
+  <div class="calc-section">
+    <div class="calc-title">3. Agent Loop Cost Visualiser</div>
+    <div class="calc-desc">See how token costs compound across agent iterations. Adjust base context and per-iteration additions to understand the true cost of agentic systems.</div>
+    <div class="calc-grid">
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label>Base Context (tokens)</label>
+          <input type="range" id="c3-base" min="1000" max="20000" value="5000" step="500" oninput="calcC3()">
+          <div class="field-row"><span class="field-val" id="c3-base-val">5,000</span><span class="field-hint">initial system + RAG + history</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Tokens Added Per Iteration</label>
+          <input type="range" id="c3-per-iter" min="200" max="3000" value="800" step="100" oninput="calcC3()">
+          <div class="field-row"><span class="field-val" id="c3-per-iter-val">800</span><span class="field-hint">tool results + model output per step</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Max Iterations</label>
+          <input type="range" id="c3-max-iter" min="2" max="20" value="10" step="1" oninput="calcC3()">
+          <div class="field-row"><span class="field-val" id="c3-max-iter-val">10</span><span class="field-hint">agent loop limit</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Tasks Per Day</label>
+          <input type="range" id="c3-tasks" min="10" max="10000" value="1000" step="100" oninput="calcC3()">
+          <div class="field-row"><span class="field-val" id="c3-tasks-val">1,000</span><span class="field-hint">daily agent task volume</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Model Tier</label>
+          <select id="c3-model" onchange="calcC3()" style="width:100%;padding:8px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:var(--font-body);font-size:13px">
+            <option value="0.003">Claude Sonnet 4 ($3/1M in, $15/1M out)</option>
+            <option value="0.0008">Claude Haiku 3.5 ($0.80/1M in, $4/1M out)</option>
+            <option value="0.015">Claude Opus 4 ($15/1M in, $75/1M out)</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-results" id="c3-results">
+        <div class="result-item"><div><div class="result-label">Cost at Iteration 1</div></div><div class="result-val" id="r3-iter1">$0.023</div></div>
+        <div class="result-item"><div><div class="result-label">Cost at Iteration 5</div></div><div class="result-val warn" id="r3-iter5">$0.071</div></div>
+        <div class="result-item"><div><div class="result-label">Cost at Max Iteration</div></div><div class="result-val warn" id="r3-itermax">$0.134</div></div>
+        <div class="result-item"><div><div class="result-label">Avg Cost If Aborted at 5 Iter</div></div><div class="result-val" id="r3-avg">$0.042</div></div>
+        <div class="result-item"><div><div class="result-label">Daily Cost (1K tasks, full loop)</div></div><div class="result-val warn" id="r3-daily">$134</div></div>
+        <div class="result-item"><div><div class="result-label">Monthly Cost (full loop)</div></div><div class="result-val big" id="r3-monthly">$4,020</div></div>
+        <div class="result-item"><div><div class="result-label">Savings from 5-Iter Limit</div></div><div class="result-val good" id="r3-savings">$1,380/month</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLISTS SECTION -->
+<section class="section" id="sec-checklists">
+  <div class="section-title">Token Optimisation Checklists</div>
+  <div class="section-desc">Actionable checklists for every role and timeline. Check off items as you implement them — progress is tracked automatically.</div>
+
+  <!-- QUICK WINS -->
+  <div class="detail-box amber" style="margin-bottom:24px">
+    <div class="detail-box-title amber">⚡ Quick Wins — Do These in the Next 48 Hours</div>
+    <div class="checklist-progress">
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-qw" style="width:0%"></div></div>
+      <span class="progress-label" id="prog-qw-label">0 / 10 complete</span>
+    </div>
+    <div class="checklist" id="cl-qw">
+      <div class="check-item" onclick="toggleCheck(this,'cl-qw','prog-qw')">
+        <div class="check-box"></div><div class="check-label"><strong>Audit your system prompt.</strong> Count the tokens. Remove every sentence that doesn't change model behaviour. Target: under 500 tokens.</div>
+        <span class="check-priority priority-p1">P1</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-qw','prog-qw')">
+        <div class="check-box"></div><div class="check-label"><strong>Enable prompt caching.</strong> Add cache_control to your system prompt and any static documents. Immediate 60–90% cost reduction on those tokens.</div>
+        <span class="check-priority priority-p1">P1</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-qw','prog-qw')">
+        <div class="check-box"></div><div class="check-label"><strong>Set max_tokens on every API call.</strong> Never rely on model defaults. Set a realistic limit for each use case — classification tasks should be 50–200 tokens, not 4,096.</div>
+        <span class="check-priority priority-p1">P1</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-qw','prog-qw')">
+        <div class="check-box"></div><div class="check-label"><strong>Add token logging to every LLM call.</strong> Log input_tokens, output_tokens, cache_hit, and cost_usd with a feature tag. You cannot optimise what you don't measure.</div>
+        <span class="check-priority priority-p1">P1</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-qw','prog-qw')">
+        <div class="check-box"></div><div class="check-label"><strong>Remove boilerplate from prompts.</strong> Delete "You are a helpful assistant", "Please", "Thank you", and similar non-functional filler. Usually saves 50–150 tokens per request.</div>
+        <span class="check-priority priority-p1">P1</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-qw','prog-qw')">
+        <div class="check-box"></div><div class="check-label"><strong>Use JSON mode for structured outputs.</strong> Eliminates preamble tokens and markdown fences. Reduces output tokens 30–50% for data extraction tasks.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-qw','prog-qw')">
+        <div class="check-box"></div><div class="check-label"><strong>Implement conversation history truncation.</strong> Cap history at a token budget (e.g., 2,000 tokens). Sliding window or summarisation — either is better than unlimited growth.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-qw','prog-qw')">
+        <div class="check-box"></div><div class="check-label"><strong>Reduce RAG top-k from the default.</strong> Most defaults are top-10 or top-20. Reduce to top-5 with a relevance threshold filter. Cuts RAG context tokens 50–75%.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-qw','prog-qw')">
+        <div class="check-box"></div><div class="check-label"><strong>Identify your top 3 most expensive request patterns.</strong> Sort by total_tokens descending in your logs. The top 3 often account for 50%+ of spend.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-qw','prog-qw')">
+        <div class="check-box"></div><div class="check-label"><strong>Add pre-flight token counting.</strong> Count tokens before sending — abort or truncate if over budget. Prevents unexpected context overflow costs.</div>
+        <span class="check-priority priority-p3">P3</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENGINEERING -->
+  <div class="detail-box" style="margin-bottom:24px">
+    <div class="detail-box-title">🔧 Engineering Implementation — 1–2 Weeks</div>
+    <div class="checklist-progress">
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-eng" style="width:0%"></div></div>
+      <span class="progress-label" id="prog-eng-label">0 / 10 complete</span>
+    </div>
+    <div class="checklist" id="cl-eng">
+      <div class="check-item" onclick="toggleCheck(this,'cl-eng','prog-eng')">
+        <div class="check-box"></div><div class="check-label"><strong>Deploy semantic response caching.</strong> Redis + embedding similarity lookup. Start with a 0.92 cosine threshold. Target: 30%+ cache hit rate within 2 weeks.</div>
+        <span class="check-priority priority-p1">P1</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-eng','prog-eng')">
+        <div class="check-box"></div><div class="check-label"><strong>Add a re-ranker to your RAG pipeline.</strong> Retrieve top-50, re-rank, send top-5. Cohere Rerank or BGE-Reranker are easy starting points. Reduces RAG context 60–80%.</div>
+        <span class="check-priority priority-p1">P1</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-eng','prog-eng')">
+        <div class="check-box"></div><div class="check-label"><strong>Implement model routing.</strong> Build a simple classifier that routes requests to Haiku (simple), Sonnet (medium), or Opus (complex). Start with rule-based routing before ML-based.</div>
+        <span class="check-priority priority-p1">P1</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-eng','prog-eng')">
+        <div class="check-box"></div><div class="check-label"><strong>Add per-user token quotas.</strong> Implement daily token budgets per user tier. Warn at 80%, throttle at 90%, block at 100% with a graceful message.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-eng','prog-eng')">
+        <div class="check-box"></div><div class="check-label"><strong>Implement tool result memoization.</strong> Cache tool call results within agent sessions by (tool_name + params) hash. Especially impactful for search, lookup, and API calls.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-eng','prog-eng')">
+        <div class="check-box"></div><div class="check-label"><strong>Add agent loop limits.</strong> Hard cap at 8–10 iterations per task. Implement a token budget that triggers mid-loop compression if exceeded.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-eng','prog-eng')">
+        <div class="check-box"></div><div class="check-label"><strong>Implement lazy tool schema loading.</strong> Don't include all tools in every request. Use a lightweight router to select the 3–5 most relevant tools per task type.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-eng','prog-eng')">
+        <div class="check-box"></div><div class="check-label"><strong>Set up cost anomaly alerts.</strong> Alert when any request exceeds 3× the rolling average token count, or when hourly cost spikes above 2 standard deviations.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-eng','prog-eng')">
+        <div class="check-box"></div><div class="check-label"><strong>Move eligible workloads to batch API.</strong> Identify classification, summarisation, and enrichment pipelines that don't require real-time responses. 50% cost reduction immediately.</div>
+        <span class="check-priority priority-p3">P3</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-eng','prog-eng')">
+        <div class="check-box"></div><div class="check-label"><strong>Implement conversation summarisation.</strong> For long sessions, periodically summarise old turns into a compact paragraph. Compress 2,000 tokens of history to 200 tokens without losing key context.</div>
+        <span class="check-priority priority-p3">P3</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORM GOVERNANCE -->
+  <div class="detail-box purple" style="margin-bottom:24px">
+    <div class="detail-box-title purple">🏛️ Platform &amp; Governance — Ongoing</div>
+    <div class="checklist-progress">
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-gov" style="width:0%"></div></div>
+      <span class="progress-label" id="prog-gov-label">0 / 8 complete</span>
+    </div>
+    <div class="checklist" id="cl-gov">
+      <div class="check-item" onclick="toggleCheck(this,'cl-gov','prog-gov')">
+        <div class="check-box"></div><div class="check-label"><strong>Build an AI cost dashboard.</strong> Real-time cost by feature, model, team. Include cost/task efficiency metric, not just raw spend. Leadership needs to see ROI, not just bills.</div>
+        <span class="check-priority priority-p1">P1</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-gov','prog-gov')">
+        <div class="check-box"></div><div class="check-label"><strong>Define token budgets per product feature.</strong> Every feature that calls an LLM should have an agreed token budget. Review and reapprove if it needs to grow.</div>
+        <span class="check-priority priority-p1">P1</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-gov','prog-gov')">
+        <div class="check-box"></div><div class="check-label"><strong>Establish a prompt review process.</strong> Any new system prompt or prompt template should be reviewed for token efficiency before production deployment.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-gov','prog-gov')">
+        <div class="check-box"></div><div class="check-label"><strong>Schedule monthly token optimisation reviews.</strong> Review top cost drivers, identify new quick wins, and track progress on ongoing optimisations.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-gov','prog-gov')">
+        <div class="check-box"></div><div class="check-label"><strong>Tag all requests with cost centre metadata.</strong> team, product, feature, environment, user_tier. Required for chargeback and accurate attribution.</div>
+        <span class="check-priority priority-p2">P2</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-gov','prog-gov')">
+        <div class="check-box"></div><div class="check-label"><strong>Document token architecture decisions.</strong> Record why each layer exists, its token budget, and the last review date. Prevents silent token budget creep over time.</div>
+        <span class="check-priority priority-p3">P3</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-gov','prog-gov')">
+        <div class="check-box"></div><div class="check-label"><strong>Set up provider pricing change alerts.</strong> Model pricing changes can significantly impact your optimisation strategy. Monitor provider pricing pages for updates.</div>
+        <span class="check-priority priority-p3">P3</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this,'cl-gov','prog-gov')">
+        <div class="check-box"></div><div class="check-label"><strong>Evaluate fine-tuning ROI quarterly.</strong> For high-volume, stable tasks (10,000+ requests/day), fine-tuning often pays back within 1–3 months. Run the break-even calculation.</div>
+        <span class="check-priority priority-p3">P3</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS SECTION -->
+<section class="section" id="sec-metrics">
+  <div class="section-title">Token Metrics &amp; KPIs</div>
+  <div class="section-desc">The metrics that matter for token optimisation. Define baselines, set targets, and track progress weekly. What gets measured gets improved.</div>
+
+  <div class="group-label">Cost Efficiency Metrics</div>
+  <table class="compare-table">
+    <thead><tr><th>Metric</th><th>Formula</th><th>Good Target</th><th>Warning Level</th><th>Why It Matters</th></tr></thead>
+    <tbody>
+      <tr><td>Cost per Request</td><td>total_cost / request_count</td><td>&lt;$0.01</td><td>&gt;$0.05</td><td>Primary cost efficiency indicator</td></tr>
+      <tr><td>Token Efficiency Ratio</td><td>output_tokens / input_tokens</td><td>0.1–0.3</td><td>&gt;0.5</td><td>High ratio = bloated input</td></tr>
+      <tr><td>Cache Hit Rate</td><td>cache_hits / total_requests</td><td>&gt;60%</td><td>&lt;30%</td><td>Most impactful single metric</td></tr>
+      <tr><td>Output / Input Ratio</td><td>output_tokens / total_tokens</td><td>10–20%</td><td>&gt;40%</td><td>High output % = unconstrained responses</td></tr>
+      <tr><td>Cost per 1K Requests</td><td>monthly_cost / (monthly_requests/1000)</td><td>&lt;$10</td><td>&gt;$50</td><td>Normalised cost benchmark</td></tr>
+      <tr><td>Cost per Successful Task</td><td>total_cost / successful_completions</td><td>Trending down</td><td>Rising month-over-month</td><td>True ROI denominator</td></tr>
+    </tbody>
+  </table>
+
+  <div class="group-label">Token Distribution Metrics</div>
+  <table class="compare-table">
+    <thead><tr><th>Metric</th><th>Target</th><th>Action if Exceeded</th></tr></thead>
+    <tbody>
+      <tr><td>p95 Request Size</td><td>&lt;8,000 tokens</td><td>Investigate outlier patterns; add size limits</td></tr>
+      <tr><td>System Prompt % of Total</td><td>&lt;15%</td><td>Audit and compress system prompt</td></tr>
+      <tr><td>RAG Context % of Total</td><td>&lt;30%</td><td>Reduce top-k; add re-ranker; tighten budget</td></tr>
+      <tr><td>History % of Total</td><td>&lt;25%</td><td>Implement sliding window or summarisation</td></tr>
+      <tr><td>Tool Schema % of Total</td><td>&lt;10%</td><td>Implement lazy schema loading</td></tr>
+      <tr><td>Output % of Total</td><td>&lt;20%</td><td>Set max_tokens; add format constraints</td></tr>
+    </tbody>
+  </table>
+
+  <div class="group-label">Agentic System Metrics</div>
+  <table class="compare-table">
+    <thead><tr><th>Metric</th><th>Good Target</th><th>Why It Matters</th></tr></thead>
+    <tbody>
+      <tr><td>Avg Iterations per Task</td><td>&lt;5</td><td>High iteration count = compounding cost</td></tr>
+      <tr><td>Cost per Task Completion</td><td>Task-specific baseline</td><td>True efficiency of agentic workflows</td></tr>
+      <tr><td>Loop Abort Rate</td><td>&lt;5%</td><td>High abort = poorly scoped tasks or bugs</td></tr>
+      <tr><td>Tool Call Dedup Rate</td><td>&gt;20%</td><td>Memoization effectiveness</td></tr>
+      <tr><td>Context Utilisation at Completion</td><td>&lt;70%</td><td>Leaving headroom prevents emergency truncation</td></tr>
+    </tbody>
+  </table>
+
+  <div class="group-label">Optimisation ROI Tracking</div>
+  <table class="compare-table">
+    <thead><tr><th>Initiative</th><th>Typical Reduction</th><th>Implementation Effort</th><th>Time to Value</th><th>Complexity</th></tr></thead>
+    <tbody>
+      <tr><td>Prompt Caching</td><td>30–90% on cached tokens</td><td>Low (1–2 days)</td><td>Immediate</td><td>⭐</td></tr>
+      <tr><td>max_tokens enforcement</td><td>20–60% output tokens</td><td>Low (&lt;1 day)</td><td>Immediate</td><td>⭐</td></tr>
+      <tr><td>System prompt audit</td><td>10–40% system tokens</td><td>Low (1 day)</td><td>Immediate</td><td>⭐</td></tr>
+      <tr><td>Semantic response cache</td><td>30–60% total requests</td><td>Medium (1 week)</td><td>1–2 weeks</td><td>⭐⭐⭐</td></tr>
+      <tr><td>RAG re-ranking</td><td>60–80% RAG tokens</td><td>Medium (3–5 days)</td><td>1 week</td><td>⭐⭐⭐</td></tr>
+      <tr><td>Model routing</td><td>40–80% model cost</td><td>Medium (1 week)</td><td>1–2 weeks</td><td>⭐⭐⭐</td></tr>
+      <tr><td>Agent loop limits</td><td>30–70% agentic cost</td><td>Low (1–2 days)</td><td>Immediate</td><td>⭐⭐</td></tr>
+      <tr><td>Fine-tuning</td><td>60–90% system prompt</td><td>High (2–4 weeks)</td><td>1–3 months</td><td>⭐⭐⭐⭐⭐</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section" id="sec-fundamentals">
+  <div class="section-title">Token Fundamentals</div>
+  <div class="section-desc">The bedrock of all token optimisation. Understand what tokens are, how they're priced, and how to measure them before implementing any strategy.</div>
+  <div class="info-note"><strong>Filtered view:</strong> Click any card to see the full details, implementation guide, and code examples for that topic.</div>
+  <div class="search-wrap">
+    <input class="search-input" type="text" id="search-fundamentals" placeholder="Search token fundamentals topics…" oninput="filterCards(this.value)" autocomplete="off"/>
+  </div>
+  <div class="card-grid" id="grid-fundamentals">
+  </div>
+</section>
+
+<section class="section" id="sec-anatomy">
+  <div class="section-title">Context Window Anatomy</div>
+  <div class="section-desc">Every token in your context window has a source and a cost. Master the 6 layers that fill the window before the user sends a single word.</div>
+  <div class="info-note"><strong>Filtered view:</strong> Click any card to see the full details, implementation guide, and code examples for that topic.</div>
+  <div class="search-wrap">
+    <input class="search-input" type="text" id="search-anatomy" placeholder="Search context window anatomy topics…" oninput="filterCards(this.value)" autocomplete="off"/>
+  </div>
+  <div class="card-grid" id="grid-anatomy">
+  </div>
+</section>
+
+<section class="section" id="sec-prompt">
+  <div class="section-title">Prompt Optimisation</div>
+  <div class="section-desc">Systematic techniques to reduce prompt length without reducing quality. The most controllable cost lever available to every developer.</div>
+  <div class="info-note"><strong>Filtered view:</strong> Click any card to see the full details, implementation guide, and code examples for that topic.</div>
+  <div class="search-wrap">
+    <input class="search-input" type="text" id="search-prompt" placeholder="Search prompt optimisation topics…" oninput="filterCards(this.value)" autocomplete="off"/>
+  </div>
+  <div class="card-grid" id="grid-prompt">
+  </div>
+</section>
+
+<section class="section" id="sec-caching">
+  <div class="section-title">Caching & Reuse</div>
+  <div class="section-desc">The highest-ROI optimisation category. Cache at every layer — model KV cache, semantic response cache, tool results, embeddings.</div>
+  <div class="info-note"><strong>Filtered view:</strong> Click any card to see the full details, implementation guide, and code examples for that topic.</div>
+  <div class="search-wrap">
+    <input class="search-input" type="text" id="search-caching" placeholder="Search caching & reuse topics…" oninput="filterCards(this.value)" autocomplete="off"/>
+  </div>
+  <div class="card-grid" id="grid-caching">
+  </div>
+</section>
+
+<section class="section" id="sec-rag">
+  <div class="section-title">RAG & Retrieval</div>
+  <div class="section-desc">Retrieved context is often the largest variable token cost. Precision retrieval, budget control, and hierarchical indexing can cut RAG tokens by 80%.</div>
+  <div class="info-note"><strong>Filtered view:</strong> Click any card to see the full details, implementation guide, and code examples for that topic.</div>
+  <div class="search-wrap">
+    <input class="search-input" type="text" id="search-rag" placeholder="Search rag & retrieval topics…" oninput="filterCards(this.value)" autocomplete="off"/>
+  </div>
+  <div class="card-grid" id="grid-rag">
+  </div>
+</section>
+
+<section class="section" id="sec-agentic">
+  <div class="section-title">Agentic Systems</div>
+  <div class="section-desc">Agent loops compound costs exponentially. Every iteration, every sub-agent, every tool result adds to a context that must be fully re-sent.</div>
+  <div class="info-note"><strong>Filtered view:</strong> Click any card to see the full details, implementation guide, and code examples for that topic.</div>
+  <div class="search-wrap">
+    <input class="search-input" type="text" id="search-agentic" placeholder="Search agentic systems topics…" oninput="filterCards(this.value)" autocomplete="off"/>
+  </div>
+  <div class="card-grid" id="grid-agentic">
+  </div>
+</section>
+
+<section class="section" id="sec-routing">
+  <div class="section-title">Model Routing & FinOps</div>
+  <div class="section-desc">Right-size every request. Route to the cheapest model that meets quality requirements. Observe, attribute, and govern token spend at every level.</div>
+  <div class="info-note"><strong>Filtered view:</strong> Click any card to see the full details, implementation guide, and code examples for that topic.</div>
+  <div class="search-wrap">
+    <input class="search-input" type="text" id="search-routing" placeholder="Search model routing & finops topics…" oninput="filterCards(this.value)" autocomplete="off"/>
+  </div>
+  <div class="card-grid" id="grid-routing">
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="section" id="sec-about">
+  <div class="section-title">About This Guide</div>
+  <div class="section-desc">A practical reference built for every person who pays an AI bill — from individual developers to enterprise AI teams managing millions of dollars in annual token spend.</div>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-card-icon">🎯</div>
+      <div class="about-card-title">Why This Guide Exists</div>
+      <div class="about-card-desc">Organisations are spending 3–10× their projected AI budgets within 12 months of deploying LLMs. The problem isn't the models — it's that most teams have no mental model for how tokens accumulate. This guide provides that model.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">👥</div>
+      <div class="about-card-title">Who This Is For</div>
+      <div class="about-card-desc">Developers building AI features, architects designing agentic systems, data scientists running RAG pipelines, product managers owning AI budgets, and executives asking "why is our AI bill this large?"</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">🔬</div>
+      <div class="about-card-title">What's Covered</div>
+      <div class="about-card-desc">32 topics across 8 domains: token fundamentals, context anatomy, prompt engineering, caching strategies, RAG optimisation, agentic systems, model routing, and FinOps governance. Plus 3 interactive calculators and 28-item checklists.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">📈</div>
+      <div class="about-card-title">Realistic Savings</div>
+      <div class="about-card-desc">Teams implementing the strategies in this guide typically achieve 50–80% cost reduction within 30 days. The quick wins alone (caching + max_tokens + prompt audit) can cut costs by 40% in under a week.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">🔄</div>
+      <div class="about-card-title">Keeping It Current</div>
+      <div class="about-card-desc">Model pricing, caching capabilities, and optimisation techniques evolve rapidly. This guide covers principles that remain valid across model generations while noting provider-specific implementations where relevant.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">⚡</div>
+      <div class="about-card-title">Version</div>
+      <div class="about-card-desc">Token Intelligence Field Guide v1.0 — June 2026. Covers Claude 3.5/4, GPT-4o, Gemini 1.5/2, and general principles applicable to any LLM provider.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px">
+    <div class="author-bar">
+      <div class="author-avatar">V</div>
+      <div>
+        <div class="author-name">Vinit Metange</div>
+        <div class="author-sub">AI Systems Architect · Token Optimisation Specialist</div>
+      </div>
+      <div class="author-links">
+        <a class="author-link" href="https://linkedin.com/in/vinitmetange" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="author-link" href="https://github.com/vinitmetange" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="site-footer">
+    <div class="footer-brand">Token Intelligence Field Guide</div>
+    <div class="footer-desc">A comprehensive reference for understanding, measuring, and optimising AI token usage across every layer of modern AI systems.</div>
+    <div class="footer-copy">© 2026 Vinit Metange · Token Intelligence Field Guide v1.0 · Free to share with attribution</div>
+  </div>
+</footer>
+
+<script>
+// Model presets
+const MODELS = {
+  sonnet4:  {in: 3.00,  out: 15.00, cache: 0.30},
+  haiku35:  {in: 0.80,  out: 4.00,  cache: 0.08},
+  opus4:    {in: 15.00, out: 75.00, cache: 1.50},
+  gpt4o:    {in: 2.50,  out: 10.00, cache: 1.25},
+  gpt4omini:{in: 0.15,  out: 0.60,  cache: 0.075},
+  custom:   {in: 3.00,  out: 15.00, cache: 0.30},
+};
+let currentModel = 'sonnet4';
+
+function setModel(model, btn) {
+  currentModel = model;
+  document.querySelectorAll('#model-tabs-c1 .model-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const cp = document.getElementById('custom-pricing');
+  if (model === 'custom') {
+    cp.style.display = 'grid';
+  } else {
+    cp.style.display = 'none';
+  }
+  calcC1();
+}
+
+function getModelPrices() {
+  if (currentModel === 'custom') {
+    return {
+      in: parseFloat(document.getElementById('custom-input-price').value) || 3,
+      out: parseFloat(document.getElementById('custom-output-price').value) || 15,
+      cache: parseFloat(document.getElementById('custom-cache-price').value) || 0.30,
+    };
+  }
+  return MODELS[currentModel];
+}
+
+function fmt(n) { return n.toLocaleString(); }
+function fmtUSD(n) {
+  if (n < 0.001) return '$' + n.toFixed(5);
+  if (n < 0.01) return '$' + n.toFixed(4);
+  if (n < 1) return '$' + n.toFixed(3);
+  return '$' + n.toFixed(2);
+}
+
+function calcC1() {
+  const systemTok = +document.getElementById('c1-system').value;
+  const historyTok = +document.getElementById('c1-history').value;
+  const ragTok = +document.getElementById('c1-rag').value;
+  const toolsTok = +document.getElementById('c1-tools').value;
+  const userTok = +document.getElementById('c1-user').value;
+  const outputTok = +document.getElementById('c1-output').value;
+  const cacheRate = +document.getElementById('c1-cache').value / 100;
+  const iters = +document.getElementById('c1-iters').value;
+
+  document.getElementById('c1-system-val').textContent = fmt(systemTok);
+  document.getElementById('c1-history-val').textContent = fmt(historyTok);
+  document.getElementById('c1-rag-val').textContent = fmt(ragTok);
+  document.getElementById('c1-tools-val').textContent = fmt(toolsTok);
+  document.getElementById('c1-user-val').textContent = fmt(userTok);
+  document.getElementById('c1-output-val').textContent = fmt(outputTok);
+  document.getElementById('c1-cache-val').textContent = (cacheRate*100).toFixed(0) + '%';
+  document.getElementById('c1-iters-val').textContent = iters;
+
+  const p = getModelPrices();
+  
+  // Base input tokens (per iteration, accumulating)
+  const staticTok = systemTok + toolsTok; // cacheable
+  const dynamicTok = historyTok + ragTok + userTok;
+  
+  // Total input tokens for N iterations (context grows)
+  let totalInputCost = 0;
+  let totalOutputCost = 0;
+  let cacheSaved = 0;
+  
+  for (let i = 1; i <= iters; i++) {
+    const iterContext = staticTok + dynamicTok + (outputTok * (i-1));
+    const cacheHitTok = staticTok * cacheRate;
+    const cacheMissTok = iterContext - cacheHitTok;
+    const iterInputCost = (cacheHitTok * p.cache + cacheMissTok * p.in) / 1e6;
+    const iterOutputCost = outputTok * p.out / 1e6;
+    totalInputCost += iterInputCost;
+    totalOutputCost += iterOutputCost;
+    cacheSaved += (cacheHitTok * (p.in - p.cache)) / 1e6;
+  }
+  
+  const totalCost = totalInputCost + totalOutputCost;
+  const baseInputTok = staticTok + dynamicTok;
+  const monthly = totalCost * 10000 * 30;
+
+  document.getElementById('r1-input').textContent = fmt(baseInputTok * iters);
+  document.getElementById('r1-input-cost').textContent = fmtUSD(totalInputCost);
+  document.getElementById('r1-output-cost').textContent = fmtUSD(totalOutputCost);
+  document.getElementById('r1-total').textContent = fmtUSD(totalCost);
+  document.getElementById('r1-monthly').textContent = '$' + monthly.toLocaleString(undefined, {maximumFractionDigits:0});
+  document.getElementById('r1-savings').textContent = fmtUSD(cacheSaved);
+}
+
+function calcC2() {
+  const base = +document.getElementById('c2-base').value;
+  const cachingPct = +document.getElementById('c2-caching').value / 100;
+  const compressionPct = +document.getElementById('c2-compression').value / 100;
+  const semanticPct = +document.getElementById('c2-semantic').value / 100;
+  const routingPct = +document.getElementById('c2-routing').value / 100;
+  const ragPct = +document.getElementById('c2-rag').value / 100;
+  const outputPct = +document.getElementById('c2-output').value / 100;
+
+  document.getElementById('c2-base-val').textContent = '$' + base.toLocaleString();
+  document.getElementById('c2-caching-val').textContent = (cachingPct*100).toFixed(0) + '%';
+  document.getElementById('c2-compression-val').textContent = (compressionPct*100).toFixed(0) + '%';
+  document.getElementById('c2-semantic-val').textContent = (semanticPct*100).toFixed(0) + '%';
+  document.getElementById('c2-routing-val').textContent = (routingPct*100).toFixed(0) + '%';
+  document.getElementById('c2-rag-val').textContent = (ragPct*100).toFixed(0) + '%';
+  document.getElementById('c2-output-val').textContent = (outputPct*100).toFixed(0) + '%';
+
+  const s1 = base * cachingPct;
+  const r1 = base - s1;
+  const s2 = r1 * compressionPct;
+  const r2 = r1 - s2;
+  const s3 = r2 * semanticPct;
+  const r3 = r2 - s3;
+  const s4 = r3 * routingPct;
+  const r4 = r3 - s4;
+  const s5 = r4 * (ragPct + outputPct) / 2;
+  const final = r4 - s5;
+  const totalSavings = base - final;
+  const annualSavings = totalSavings * 12;
+
+  document.getElementById('r2-base').textContent = '$' + base.toLocaleString();
+  document.getElementById('r2-caching').textContent = '$' + Math.round(s1).toLocaleString();
+  document.getElementById('r2-compression').textContent = '$' + Math.round(s2).toLocaleString();
+  document.getElementById('r2-semantic').textContent = '$' + Math.round(s3).toLocaleString();
+  document.getElementById('r2-routing').textContent = '$' + Math.round(s4).toLocaleString();
+  document.getElementById('r2-ragout').textContent = '$' + Math.round(s5).toLocaleString();
+  document.getElementById('r2-final').textContent = '$' + Math.round(final).toLocaleString();
+  document.getElementById('r2-annual').textContent = '$' + Math.round(annualSavings).toLocaleString();
+}
+
+function calcC3() {
+  const baseCtx = +document.getElementById('c3-base').value;
+  const perIter = +document.getElementById('c3-per-iter').value;
+  const maxIter = +document.getElementById('c3-max-iter').value;
+  const tasks = +document.getElementById('c3-tasks').value;
+  const modelVal = parseFloat(document.getElementById('c3-model').value);
+  const outMultiplier = 5; // output costs ~5x input
+
+  document.getElementById('c3-base-val').textContent = baseCtx.toLocaleString();
+  document.getElementById('c3-per-iter-val').textContent = perIter.toLocaleString();
+  document.getElementById('c3-max-iter-val').textContent = maxIter;
+  document.getElementById('c3-tasks-val').textContent = tasks.toLocaleString();
+
+  const costAtIter = (n) => {
+    let total = 0;
+    for (let i = 1; i <= n; i++) {
+      const ctx = baseCtx + perIter * (i - 1);
+      const outputPer = perIter * 0.4; // assume 40% output
+      total += (ctx * modelVal / 1e6) + (outputPer * modelVal * outMultiplier / 1e6);
+    }
+    return total;
+  };
+
+  const c1 = costAtIter(1);
+  const c5 = costAtIter(Math.min(5, maxIter));
+  const cMax = costAtIter(maxIter);
+  const cAvg5 = costAtIter(5) / 5 * 3; // rough average
+
+  document.getElementById('r3-iter1').textContent = fmtUSD(c1);
+  document.getElementById('r3-iter5').textContent = fmtUSD(c5);
+  document.getElementById('r3-itermax').textContent = fmtUSD(cMax);
+  document.getElementById('r3-avg').textContent = fmtUSD(cAvg5);
+  
+  const dailyFull = cMax * tasks;
+  const monthlyFull = dailyFull * 30;
+  const monthlySaved = (cMax - c5) * tasks * 30;
+  
+  document.getElementById('r3-daily').textContent = '$' + dailyFull.toFixed(0);
+  document.getElementById('r3-monthly').textContent = '$' + Math.round(monthlyFull).toLocaleString();
+  document.getElementById('r3-savings').textContent = '$' + Math.round(monthlySaved).toLocaleString() + '/month';
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+// Domain → keyword mapping for filtering cards into domain sections
+const DOMAIN_KEYWORDS = {
+  fundamentals: ['fundamentals','tokenization','bpe','pricing','cost models','counting','measurement','tiktoken','budget','limits','enforcement'],
+  anatomy:      ['context window','anatomy','layers','system prompt','overhead','bloat','history','conversation','truncation','tool schema','function calling','definitions'],
+  prompt:       ['compression','prompt engineering','concise','output','max_tokens','response length','few shot','examples','efficiency','json structured','constrained'],
+  caching:      ['kv cache','prompt caching','anthropic','semantic cache','similar questions','response reuse','memoization','api calls','embedding cache','vector reuse'],
+  rag:          ['chunking','rag','retrieval','reranking','context quality','precision','raptor','summary indexing','hierarchical'],
+  agentic:      ['agent loop','compound','iterations','multi agent','orchestration','subagent','reasoning','planning','thinking','chain of thought','tool call result','tool result'],
+  routing:      ['routing','model selection','intelligent','speculative decoding','draft model','fine tuning','prompt reduction','batch','async','observability','tracing','logging','rate limiting','quota','cost attribution','chargeback','anomaly detection'],
+};
+
+function populateDomainGrid(domainId) {
+  const grid = document.getElementById('grid-' + domainId);
+  if (!grid || grid.dataset.populated) return;
+  const keywords = DOMAIN_KEYWORDS[domainId] || [];
+  const allCards = document.querySelectorAll('#grid-all .topic-card');
+  allCards.forEach(card => {
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const text = card.textContent.toLowerCase();
+    const matches = keywords.some(kw => tags.includes(kw) || text.includes(kw));
+    if (matches) {
+      const clone = card.cloneNode(true);
+      // fix onclick to pass back to this domain section
+      clone.setAttribute('onclick', card.getAttribute('onclick'));
+      grid.appendChild(clone);
+    }
+  });
+  grid.dataset.populated = '1';
+}
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.detail-panel').forEach(p => p.classList.remove('active'));
+
+  const sec = document.getElementById('sec-' + id);
+  if (sec) sec.classList.add('active');
+
+  // Populate domain grids lazily on first visit
+  if (DOMAIN_KEYWORDS[id]) populateDomainGrid(id);
+
+  const navMap = {
+    all: 'All Topics', fundamentals: 'Token Fundamentals', anatomy: 'Context Anatomy',
+    prompt: 'Prompt', caching: 'Caching', rag: 'RAG', agentic: 'Agentic',
+    routing: 'Routing', calculators: 'Calculators', checklists: 'Checklists',
+    metrics: 'Metrics', about: 'About'
+  };
+  const keyword = (navMap[id] || id).toLowerCase();
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    if (b.textContent.toLowerCase().includes(keyword)) b.classList.add('active');
+  });
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  if (id === 'calculators') { calcC1(); calcC2(); calcC3(); }
+}
+
+// ── DETAIL PANELS ─────────────────────────────────────────────────────────────
+let _detailSourceSection = 'all';
+
+function openDetail(id) {
+  const active = document.querySelector('.section.active');
+  _detailSourceSection = active ? active.id.replace('sec-', '') : 'all';
+  document.querySelectorAll('.detail-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('detail-' + id);
+  if (panel) {
+    const backBtn = panel.querySelector('.detail-back');
+    if (backBtn) {
+      const labels = {
+        all:'All Topics', fundamentals:'Token Fundamentals', anatomy:'Context Anatomy',
+        prompt:'Prompt Optimisation', caching:'Caching & Reuse', rag:'RAG & Retrieval',
+        agentic:'Agentic Systems', routing:'Model Routing'
+      };
+      backBtn.textContent = '← Back to ' + (labels[_detailSourceSection] || 'All Topics');
+      backBtn.setAttribute('onclick', `closeDetail('${id}')`);
+    }
+    panel.classList.add('active');
+    panel.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+}
+function closeDetail(id) {
+  const panel = document.getElementById('detail-' + id);
+  if (panel) panel.classList.remove('active');
+  showSection(_detailSourceSection || 'all');
+}
+
+// ── SEARCH / FILTER ───────────────────────────────────────────────────────────
+function filterCards(q) {
+  const query = q.toLowerCase().trim();
+  document.querySelectorAll('.topic-card').forEach(card => {
+    const text = (card.textContent + card.dataset.tags).toLowerCase();
+    card.style.display = (!query || text.includes(query)) ? '' : 'none';
+  });
+  document.querySelectorAll('.group-label').forEach(gl => {
+    const grid = gl.nextElementSibling;
+    if (!grid) return;
+    const visible = grid && [...grid.querySelectorAll('.topic-card')].some(c => c.style.display !== 'none');
+    gl.style.display = visible ? '' : 'none';
+  });
+}
+
+// ── CHECKLISTS ────────────────────────────────────────────────────────────────
+function toggleCheck(item, listId, progId) {
+  item.classList.toggle('checked');
+  updateProgress(listId, progId);
+}
+function updateProgress(listId, progId) {
+  const list = document.getElementById(listId);
+  if (!list) return;
+  const items = list.querySelectorAll('.check-item');
+  const checked = list.querySelectorAll('.check-item.checked').length;
+  const pct = items.length ? (checked / items.length * 100) : 0;
+  const fill = document.getElementById(progId);
+  const label = document.getElementById(progId + '-label');
+  if (fill) fill.style.width = pct + '%';
+  if (label) label.textContent = checked + ' / ' + items.length + ' complete';
+}
+
+// ── SHARE ─────────────────────────────────────────────────────────────────────
+function shareLinkedIn() {
+  const url = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent('The Token Intelligence Field Guide — everything you need to understand and optimise AI token usage. Free, comprehensive, and open. #AI #FinOps #LLM #TokenOptimisation');
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url + '&summary=' + text, '_blank');
+}
+function shareTwitter() {
+  const url = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent('The Token Intelligence Field Guide — 32 topics, 3 calculators, and 28 actionable checklists for mastering AI token costs. Free reference guide by @vinitmetange');
+  window.open('https://twitter.com/intent/tweet?url=' + url + '&text=' + text, '_blank');
+}
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => showToast('Link copied to clipboard!'));
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ── SCROLL TOP ────────────────────────────────────────────────────────────────
+const scrollBtn = document.getElementById('scroll-top-btn');
+window.addEventListener('scroll', () => {
+  scrollBtn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// ── KEYBOARD SHORTCUTS ────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+    e.preventDefault();
+    const searchEl = document.querySelector('.section.active .search-input');
+    if (searchEl) searchEl.focus();
+  }
+  if (e.key === 'Escape') {
+    const searchEl = document.querySelector('.section.active .search-input');
+    if (searchEl) { searchEl.value = ''; filterCards(''); searchEl.blur(); }
+    document.querySelectorAll('.detail-panel.active').forEach(p => p.classList.remove('active'));
+  }
+});
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  calcC1(); calcC2(); calcC3();
+});
+</script>
+</body>
+</html>
